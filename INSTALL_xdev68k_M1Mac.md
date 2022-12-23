@@ -18,11 +18,14 @@ VSCodeをはじめ、普段使い慣れた最新の開発環境のエディタ�
 1. Unix 互換環境のインストールと環境構築
 
 Xcode command line tool が入ってなければ導入。
+
     xcode-select --install
 
 [Homebrew](https://brew.sh/)が入ってなければ導入。
 
-brewでいくつか追加導入
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brewでいくつか必要なものを導入
 
     brew install cmake
     brew install libiconv
@@ -31,9 +34,11 @@ brewでいくつか追加導入
     brew install coreutils
     brew install automake
 
+
 2. xdev68k gitリポジトリのclone
 
 特にひっかかることはない
+
 
 3. クロスコンパイラのビルド
 
@@ -64,5 +69,28 @@ xdev68k が採用している gcc-10.2 には Apple M1 上でのクロスコン�
     ./contrib/download_prerequisites
 
 これでクロスコンパイラのビルドが完了できます。
+
+
+4. ユーティリティのインストール
+
+`./build_m68k-toolchain.sh` の中にある `cp` コマンドの `--preserve-timestamps` は残念ながら macOS 付属の cp にはありません。
+今回は自分だけが実行する形なのですべて `-p` に書き換えます。
+
+実行すると XC のアーカイブファイルの展開に失敗します。必要なファイル自体は展開されているので、一度実行したら lha を実行している行をコメントアウトして再実行します。
+
+SJIS文字を含む .h ファイルの変換に失敗し、EOFが最後に残ってしまうものがあるので手で修正します。
+
+
+5. 環境変数設定
+
+あまり長いと HAS/HLKがエラーとなってしまう場合があるので、シンボリックリンクなどを使って適宜短縮します。
+
+6. Hello World
+
+やはり SJIS の入ったファイルがうまくいかないようです。とりあえず手で修正し、`-finput-charset=cp932` のコンパイラオプションを外してしまうとうまくいきます。
+ただ、これだと後々日本語の入ったアプリケーションを作ろうと思った時困りますね。今後さらに確認しようと思います。
+
+
+2022.12.23 tantan
 
 
