@@ -52,7 +52,7 @@ xdev68k が採用している gcc-10.2 には Apple M1 上でのクロスコン�
     gcc/config/aarch64/aarch64.h
     gcc/config/host-darwin.c
 
-修正の仕方は[ここ](https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch)の通りにやれば大丈夫です。
+修正の仕方は [https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch](https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch) の通りにやれば大丈夫です。
 
 具体的には一度 `./build_m68k-toolchain.sh` を流し error で途中終了したら、上記の2ファイルをカレントディレクトリにコピーし、エディタで修正します。
 さらに `./build_m68k-toolchain.sh` の以下の部分に2行追加して、gccの本家アーカイブの展開直後に2ファイルを差し替えるようにします。
