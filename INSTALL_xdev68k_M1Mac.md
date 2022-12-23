@@ -2,8 +2,12 @@
 
 ### xdev68k
 
-[xdev68k](https://github.com/yosshin4004/xdev68k)はよっしんさんが構築されているX680x0向けのクロス開発環境です。
-VSCodeをはじめ、普段使い慣れた最新の開発環境のエディタを使える、最新の性能のCPUでコンパイル・リンクまで行い、.X形式の実行ファイルまで作成することができるなど、非常に多くのメリットがあります。
+[xdev68k](https://github.com/yosshin4004/xdev68k)はよっしんさんが構築されているX680x0対応クロス開発環境です。
+
+- VSCodeをはじめ、普段使い慣れた最新の開発環境のエディタを使える
+- 最新の性能のCPUでコンパイル・リンクまで行い、.X形式の実行ファイルまで作成できる
+
+など非常に多くのメリットがあります。
 
 自分がこれを M1 MacBook に導入した際(2022年12月)、いくつかの手作業が必要だったので、覚書として記録しておきます。
 
@@ -21,7 +25,7 @@ Xcode command line tool が入ってなければ導入。
 
     xcode-select --install
 
-[Homebrew](https://brew.sh/)が入ってなければ導入。
+[Homebrew](https://brew.sh/) が入ってなければ導入。
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -44,6 +48,7 @@ brewでいくつか必要なものを導入
 
 xdev68k が採用している gcc-10.2 には Apple M1 上でのクロスコンパイラビルドに問題があり、正常にビルドが完了できません。
 このためには、以下の2ファイルの一部を書き換えてやる必要があります。
+
     gcc/config/aarch64/aarch64.h
     gcc/config/host-darwin.c
 
