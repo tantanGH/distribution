@@ -23,7 +23,7 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 公式サイトは以下になります。
 
-・[https://python.org/](https://python.org/)
+ - [https://python.org/](https://python.org/)
 
 公式サイトから Windows 用の Python 3.x 最新版のインストーラをダウンロードします。
 
@@ -62,7 +62,7 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 公式サイトは以下になります。インストーラをダウンロードします。ちなみに SCM = Source Code Management です。
 
-・[https://gitforwindows.org/](https://gitforwindows.org/)
+ - [https://gitforwindows.org/](https://gitforwindows.org/)
 
 ![](images/winpy05.png)
 
@@ -91,9 +91,9 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 現在このサイトでは X680x0絡みの自作 Python アプリケーションをパッケージの形にして配布しています。
 
-・[pymag](https://github.com/tantanGH/pymag/) ... Python MAG画像 エンコーダ
-・[dim2xdf](https://github.com/tantanGH/dim2xdf/) ... Python DIM ディスクイメージ to XDF ディスクイメージ コンバータ
-・[wav2adpcm](https://github.com/tantanGH/wav2adpcm/) ... Python WAVE データ to X68k ADPCM データ コンバータ
+ - [pymag](https://github.com/tantanGH/pymag/) ... Python MAG画像 エンコーダ
+ - [dim2xdf](https://github.com/tantanGH/dim2xdf/) ... Python DIM ディスクイメージ to XDF ディスクイメージ コンバータ
+ - [wav2adpcm](https://github.com/tantanGH/wav2adpcm/) ... Python WAVE データ to X68k ADPCM データ コンバータ
 
 
 ここでは試しにこれらを入れてみます。
