@@ -96,7 +96,7 @@ gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する�
 
 4. ユーティリティのインストール (./install_xdev68k-utils.sh)
 
-4.1 --preserve-timestamp
+4.1 cp のオプション
 
 macOS 付属の cp は `--preserve-timestamps` をサポートしていないので、`./build_m68k-toolchain.sh` の中にある
 `cp` コマンドの `--preserve-timestamps` をすべて `-p` に書き換える。
@@ -108,7 +108,13 @@ macOS 付属の cp は `--preserve-timestamps` をサポートしていないの
 
     LHA=7z
 
+また、LHAを使っている行を以下のように変更する。
+
+    ${LHA} x -o${ARCHIVE%.*} ${ARCHIVE}
+
 4.3 ヘッダファイル変換
+
+macOS 付属のsed 
 
 SJIS文字を含む .h ファイルの変換に失敗し、EOFが最後に残ってしまうものがあるので手で修正します。
 
