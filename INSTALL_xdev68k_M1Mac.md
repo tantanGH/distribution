@@ -11,15 +11,19 @@
 
 自分がこれを M1 MacBook に導入した際(2022.12)、いくつかの手作業が必要だったので、覚書として記録しておきます。
 
+---
+
 ### 自分の環境
 
 - MacBook Air (M1,2020)
 - macOS 13.1 (Ventura)
 - Memory 8GB
 
+---
+
 ### 手順ごとのポイント
 
-1. Unix 互換環境のインストールと環境構築
+### 1. Unix 互換環境のインストールと環境構築
 
 Xcode command line tool が入ってなければ導入。
 
@@ -41,15 +45,15 @@ brewでいくつか必要なものを導入
 
 ---
 
-2. xdev68k gitリポジトリのclone
+### 2. xdev68k gitリポジトリのclone
 
 特にひっかかることはない
 
 ---
 
-3. クロスコンパイラのビルド (./build_m68k-toolchain.sh)
+### 3. クロスコンパイラのビルド (./build_m68k-toolchain.sh)
 
-3.1 未定義変数のチェック
+3.1. 未定義変数のチェック
 
 macOS の bash は未定義変数チェックの -v が使えないので、239行目付近を以下のように修正する。
 
@@ -57,7 +61,7 @@ macOS の bash は未定義変数チェックの -v が使えないので、239�
 	    newlib_cflags=""
     #fi
 
-3.2 gccのバージョン
+3.2. gccのバージョン
 
 gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する。60行目付近を以下のように修正する。
 
@@ -94,15 +98,15 @@ gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する�
 
 ---
 
-4. ユーティリティのインストール (./install_xdev68k-utils.sh)
+### 4. ユーティリティのインストール (./install_xdev68k-utils.sh)
 
-4.1 cp のオプション
+4.1. cp のオプション
 
 macOS 付属の cp は `--preserve-timestamps` をサポートしていないので、`./build_m68k-toolchain.sh` の中にある
 `cp` コマンドの `--preserve-timestamps` をすべて `-p` に書き換える。
 
 
-4.2 LHA 展開
+4.2. LHA 展開
 
 名前にSJIS文字の含まれたファイルをrun68経由のlhaで展開しようとすると失敗するので、103行目のLHA=の行を以下のように変更して、LZHの展開に7zを使うようにする。
 
@@ -112,7 +116,7 @@ macOS 付属の cp は `--preserve-timestamps` をサポートしていないの
 
     ${LHA} x -o${ARCHIVE%.*} ${ARCHIVE}
 
-4.3 ヘッダファイル変換
+4.3. ヘッダファイル変換
 
 macOS 付属の `sed` だとSJIS文字を含む .h ファイルの変換に失敗するため、代わりに `perl` を使うようにする。バックスラッシュが一つ減るのに注意。
 
@@ -120,18 +124,55 @@ macOS 付属の `sed` だとSJIS文字を含む .h ファイルの変換に失�
 
 ---
 
-5. 環境変数設定
+### 5. 環境変数設定
 
 あまり長いと HAS/HLKがエラーとなってしまう場合があるので、シンボリックリンクなどを使って適宜短縮する。
 
 ---
 
-6. Hello World
+### 6. Hello World
 
-やはり SJIS の入ったファイルがうまくいかないようです。とりあえず手で修正し、`-finput-charset=cp932` のコンパイラオプションを外してしまうとうまくいきます。
-ただ、これだと後々日本語の入ったアプリケーションを作ろうと思った時困りますね。今後さらに確認しようと思います。
+`-finput-charset=cp932` のコンパイラオプションがあると stdio.h, stdlib.h の utf-8 への変換に失敗する。
 
+workaround: `-finput-charset=cp932` のオプションを外す。
 
-2022.12.23 tantan
+他に手が無いか調査中
+
+---
+
+### 7. 実際の利用
+
+7.1. sys/types.h
+
+X68用以外のソース(zlib等)をコンパイルしようとすると、include/xc/ からではなく m68k-toolchain/m68k-elf/include/ のヘッダを使うケースが出てくる。
+`sys/types.h` をincludeすると、`time_t`,`clock_t`の定義がXCと競合する。
+
+workaround: コンパイラオプションに `-D__time_t_defined -D__clock_t_defined` を追加する。
+
+7.2. errno.h
+
+X68用以外のソース(zlib等)をコンパイルしようとすると、include/xc/ からではなく m68k-toolchain/m68k-elf/include/ のヘッダを使うケースが出てくる。
+`errno.h` をincludeすると、`wint_t`の定義が未定義と怒られる。
+
+workaround: `include/xc/` の中で `error.h` から `errno.h` へのシンボリックリンクを張る。
+
+7.3. HLK で Out of memory
+
+リンクするオブジェクトの数が多いと Out of memory になることがある。
+
+workaround: リンクだけ Human68k 上で実行する。
+
+7.4. AR.X で不正な .A ファイルが作られる
+
+アーカイブするオブジェクトの数が多いと不正な .A (ほぼ空) が作られることがある。
+
+workaround: アーカイブだけ Human68k 上で実行する。
+
+---
+
+### 変更履歴
+
+2022.12.23 tantan 初版
+2022.12.28 tantan 内容更新
 
 
