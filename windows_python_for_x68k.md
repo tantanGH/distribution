@@ -69,7 +69,7 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 あれこれ聞かれますが、"エディタとして標準の Notepad を使う" を選択しておくくらいで、あとはデフォルトのままで大丈夫です。
 
-![](images/winpy06.png)
+![](images/winpy07.png)
 
 ![](images/winpy08.png)
 
