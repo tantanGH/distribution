@@ -173,7 +173,7 @@ X680x0 エミュレータで使われる FDイメージの形式には主に `.d
 
 最新の X68000Z は今のところ `.xdf` にしか対応していないそうなので、手元にある `.dim` 形式のファイルを変換するために作りました。
 
-　　　　dim2xdf hogehoge.dim hogehoge.xdf
+    dim2xdf hogehoge.dim hogehoge.xdf
     
 使い方はこれだけです。
 
