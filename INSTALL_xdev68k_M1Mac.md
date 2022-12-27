@@ -65,16 +65,16 @@ gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する�
     GCC_ARCHIVE="gcc-${GCC_VERSION}.tar.gz"
     GCC_SHA512SUM="36ab2267540f205b148037763b3806558e796d564ca7831799c88abcf03393c6dc2cdc9d53e8f094f6dc1245e47a406e1782604eb9d119410d406032f59c1544"
 
-どうしても 10.2.0 のままで行く場合は以下の2ファイルの一部を書き換える。
+どうしても 10.2.0 のままで行く場合は以下の2ファイルの一部を書き換える必要がある。
 
     gcc/config/aarch64/aarch64.h
     gcc/config/host-darwin.c
 
-修正の仕方は [https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch](https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch) の通りにやればok。
+一度 `./build_m68k-toolchain.sh` を流し error で途中終了したら、上記の2ファイルをカレントディレクトリにコピーし、エディタで修正。
 
-具体的には一度 `./build_m68k-toolchain.sh` を流し error で途中終了したら、上記の2ファイルをカレントディレクトリにコピーし、エディタで修正。
-さらに `./build_m68k-toolchain.sh` の以下の部分に2行追加して、gccの本家アーカイブの展開直後に2ファイルを差し替えるようにする。
-コピー元のパスは適宜修正。絶対パスが確実。
+修正の内容は [https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch](https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch) を参考にする。
+
+さらに `./build_m68k-toolchain.sh` の以下の部分に2行追加して、gccの本家アーカイブの展開直後に2ファイルを差し替えるようにする。コピー元のパスは適宜修正する。
 
     cd ${DOWNLOAD_DIR}
     if ! [ -f "${GCC_ARCHIVE}" ]; then
@@ -118,11 +118,13 @@ macOS 付属の `sed` だとSJIS文字を含む .h ファイルの変換に失�
 
     for f in * ; do cat $f | perl -pe 's/^\x1a$//g' > $f.tmp && rm $f && mv $f.tmp $f; done
 
+---
 
 5. 環境変数設定
 
 あまり長いと HAS/HLKがエラーとなってしまう場合があるので、シンボリックリンクなどを使って適宜短縮する。
 
+---
 
 6. Hello World
 
