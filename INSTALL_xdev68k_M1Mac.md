@@ -96,6 +96,26 @@ gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する�
     cd ${SRC_DIR}/${GCC_DIR}
     ./contrib/download_prerequisites
 
+3.3. libiconv の場所
+
+このまま build すると gcc が libiconv を見つけられず cp932 のソースを入力として受け入れられなくなるので、stage2 の configure の最後に `--with-libconv-prefix=/opt/homebrew/opt/libiconv` を追加して brew で入れた libiconv を使うようにする。
+
+    cd ${BUILD_DIR}/${GCC_DIR}_stage2
+        `realpath --relative-to=./ ${SRC_DIR}/${GCC_DIR}`/configure \
+        --prefix=${INSTALL_DIR} \
+        --program-prefix=${PROGRAM_PREFIX} \
+        --target=${TARGET} \
+        --enable-lto \
+        --enable-languages=c,c++ \
+        --with-arch=m68k \
+        --with-cpu=${WITH_CPU} \
+        --with-newlib \
+        --enable-interwork \
+        --enable-multilib \
+        --disable-shared \
+        --disable-threads \
+        --with-libiconv-prefix=/opt/homebrew/opt/libiconv
+
 ---
 
 ### 4. ユーティリティのインストール (./install_xdev68k-utils.sh)
