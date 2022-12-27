@@ -41,7 +41,10 @@ Python は Linux などと同様に、「ディストリビューション」と
 ![](images/winpy03.png)
 
 
-インストーラが終了したら、Power Shell もしくはコマンドウィンドウを開いて、`python --version` と打ってみましょう。
+インストーラが終了したら、Power Shell もしくはコマンドウィンドウを開いて、以下のコマンドを打ってみます。ハイフンは2つです。
+
+    python --version
+
 下のようにバージョンが表示されればインストール成功です。
 
 ![](images/winpy04.png)
@@ -75,7 +78,10 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 再起動後、再び Power Shell かコマンドウィンドウを開いて、バージョンを確認します。
 
-`python --version` `git --version` で以下のようにバージョンが表示されればokです。
+    python --version
+    git --version
+
+で以下のようにバージョンが表示されればokです。
 
 ![](images/winpy09.png)
 
@@ -83,4 +89,61 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 ### Python 追加パッケージのインストール
 
+現在このサイトでは X680x0　絡みの自作 Python アプリケーションをパッケージの形にして配布しています。
+
+・[pymag](https://github.com/tantanGH/pymag/) ... Python MAG画像 エンコーダ
+・[dim2xdf](https://github.com/tantanGH/dim2xdf/) ... Python DIM ディスクイメージ to XDF ディスクイメージ コンバータ
+・[wav2adpcm](https://github.com/tantanGH/wav2adpcm/) ... Python WAVE データ to X68k ADPCM データ コンバータ
+
+
+ここでは試しにこれらを入れてみます。
+
+Power Shell で以下のコマンドを入力します。
+
+    pip install git+https://github.com/tantanGH/pymag.git
+    pip install git+https://github.com/tantanGH/dim2xdf.git   
+    pip install git+https://github.com/tantanGH/wav2adpcm.git
+
 ![](images/winpy10.png)
+
+コマンド `pip` は Python標準のパッケージ管理ツールです。好きなパッケージ(ライブラリ)を入れたり外したりを安全かつ簡単に行うことができます。
+
+3つのコマンドの実行が終わったら、以下のコマンドで導入されたパッケージとバージョンを確認してみます。
+
+    pip list
+
+![](images/winpy11.png)
+
+上のように pymag, dim2xdf, wav2adpcm がリストに入っていれば導入成功です。
+
+今導入した3つのパッケージは実行可能アプリケーションとしても構成されていますので、以下のコマンドが Power Shell内で使えるようになっているはずです。
+
+    pymag
+    dim2xdf
+    wav2adpcm
+    
+それぞれ引数なしで実行してみて、ヘルプメッセージが表示されれば正しくインストールされています。
+
+![](images/winpy12.png)
+
+
+ただし、最後の `wav2adpcm` だけはやや特殊な機種依存のライブラリに依存しているため、警告がでます。
+実際の使用には問題ないので無視して良いのですが、気になる場合は以下のファイルを手で書き換えることによってこの警告を消すことができます。
+
+　　　　C:\Users\ユーザ名\AppData\Local\Programs\Python\Python311\Scripts\wav2adpcm-script.py
+    
+メモ帳で最初の1行に ` -W ignore` を加えて保存します。
+
+![](images/winpy13.png)
+
+これで警告が消えました。
+
+![](images/winpy14.png)
+
+
+---
+
+### Python サンプルの利用 (pymag)
+
+X680x0 は
+    
