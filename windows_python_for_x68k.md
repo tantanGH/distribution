@@ -89,7 +89,7 @@ Python は Linux などと同様に、「ディストリビューション」と
 
 ### Python 追加パッケージのインストール
 
-現在このサイトでは X680x0　絡みの自作 Python アプリケーションをパッケージの形にして配布しています。
+現在このサイトでは X680x0絡みの自作 Python アプリケーションをパッケージの形にして配布しています。
 
 ・[pymag](https://github.com/tantanGH/pymag/) ... Python MAG画像 エンコーダ
 ・[dim2xdf](https://github.com/tantanGH/dim2xdf/) ... Python DIM ディスクイメージ to XDF ディスクイメージ コンバータ
