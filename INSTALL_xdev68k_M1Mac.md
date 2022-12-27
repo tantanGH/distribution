@@ -9,7 +9,7 @@
 
 など非常に多くのメリットがあります。
 
-自分がこれを M1 MacBook に導入した際(2022年12月)、いくつかの手作業が必要だったので、覚書として記録しておきます。
+自分がこれを M1 MacBook に導入した際(2022.12)、いくつかの手作業が必要だったので、覚書として記録しておきます。
 
 ### 自分の環境
 
@@ -37,6 +37,7 @@ brewでいくつか必要なものを導入
     brew install realpath
     brew install coreutils
     brew install automake
+    brew install p7zip
 
 
 2. xdev68k gitリポジトリのclone
@@ -44,19 +45,34 @@ brewでいくつか必要なものを導入
 特にひっかかることはない
 
 
-3. クロスコンパイラのビルド
+3. クロスコンパイラのビルド (./build_m68k-toolchain.sh)
 
-xdev68k が採用している gcc-10.2 には Apple M1 上でのクロスコンパイラビルドに問題があり、正常にビルドが完了できません。
-このためには、以下の2ファイルの一部を書き換えてやる必要があります。
+3.1 未定義変数のチェック
+
+macOS の bash は未定義変数チェックの -v が使えないので、239行目付近を以下のように修正する。
+
+    #if [ ! -v newlib_cflags ]; then
+	    newlib_cflags=""
+    #fi
+
+3.2 gccのバージョン
+
+gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する。60行目付近を以下のように修正する。
+
+    GCC_VERSION="12.2.0"
+    GCC_ARCHIVE="gcc-${GCC_VERSION}.tar.gz"
+    GCC_SHA512SUM="36ab2267540f205b148037763b3806558e796d564ca7831799c88abcf03393c6dc2cdc9d53e8f094f6dc1245e47a406e1782604eb9d119410d406032f59c1544"
+
+どうしても 10.2.0 のままで行く場合は以下の2ファイルの一部を書き換える。
 
     gcc/config/aarch64/aarch64.h
     gcc/config/host-darwin.c
 
-修正の仕方は [https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch](https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch) の通りにやれば大丈夫です。
+修正の仕方は [https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch](https://dev.haiku-os.org/attachment/ticket/17191/apple_silicon.patch) の通りにやればok。
 
-具体的には一度 `./build_m68k-toolchain.sh` を流し error で途中終了したら、上記の2ファイルをカレントディレクトリにコピーし、エディタで修正します。
-さらに `./build_m68k-toolchain.sh` の以下の部分に2行追加して、gccの本家アーカイブの展開直後に2ファイルを差し替えるようにします。
-コピー元のパスは適宜修正してください。絶対パスが確実です。
+具体的には一度 `./build_m68k-toolchain.sh` を流し error で途中終了したら、上記の2ファイルをカレントディレクトリにコピーし、エディタで修正。
+さらに `./build_m68k-toolchain.sh` の以下の部分に2行追加して、gccの本家アーカイブの展開直後に2ファイルを差し替えるようにする。
+コピー元のパスは適宜修正。絶対パスが確実。
 
     cd ${DOWNLOAD_DIR}
     if ! [ -f "${GCC_ARCHIVE}" ]; then
@@ -74,17 +90,26 @@ xdev68k が採用している gcc-10.2 には Apple M1 上でのクロスコン�
     cd ${SRC_DIR}/${GCC_DIR}
     ./contrib/download_prerequisites
 
-これでクロスコンパイラのビルドが完了できます。
 
 
-4. ユーティリティのインストール
+4. ユーティリティのインストール (./install_xdev68k-utils.sh)
 
-`./build_m68k-toolchain.sh` の中にある `cp` コマンドの `--preserve-timestamps` は残念ながら macOS 付属の cp にはありません。
-今回は自分だけが実行する形なのですべて `-p` に書き換えます。
+4.1 --preserve-timestamp
 
-実行すると XC のアーカイブファイルの展開に失敗します。必要なファイル自体は展開されているので、一度実行したら lha を実行している行をコメントアウトして再実行します。
+macOS 付属の cp は `--preserve-timestamps` をサポートしていないので、`./build_m68k-toolchain.sh` の中にある
+`cp` コマンドの `--preserve-timestamps` をすべて `-p` に書き換える。
+
+
+4.2 LHA 展開
+
+名前にSJIS文字の含まれたファイルをrun68経由のlhaで展開しようとすると失敗するので、103行目のLHA=の行を以下のように変更して、LZHの展開に7zを使うようにする。
+
+    LHA=7z
+
+4.3 ヘッダファイル変換
 
 SJIS文字を含む .h ファイルの変換に失敗し、EOFが最後に残ってしまうものがあるので手で修正します。
+
 
 
 5. 環境変数設定
