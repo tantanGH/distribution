@@ -39,11 +39,13 @@ brewでいくつか必要なものを導入
     brew install automake
     brew install p7zip
 
+---
 
 2. xdev68k gitリポジトリのclone
 
 特にひっかかることはない
 
+---
 
 3. クロスコンパイラのビルド (./build_m68k-toolchain.sh)
 
@@ -90,7 +92,7 @@ gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する�
     cd ${SRC_DIR}/${GCC_DIR}
     ./contrib/download_prerequisites
 
-
+---
 
 4. ユーティリティのインストール (./install_xdev68k-utils.sh)
 
