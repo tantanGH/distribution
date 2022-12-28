@@ -157,39 +157,29 @@ macOS 付属の `sed` だとSJIS文字を含む .h ファイルの変換に失�
 
 ---
 
-### 6. Hello World
+### 6. 実際の利用
 
-`-finput-charset=cp932` のコンパイラオプションがあると stdio.h, stdlib.h の utf-8 への変換に失敗する。
-
-workaround: `-finput-charset=cp932` のオプションを外す。
-
-他に手が無いか調査中
-
----
-
-### 7. 実際の利用
-
-7.1. sys/types.h
+6.1. sys/types.h
 
 X68用以外のソース(zlib等)をコンパイルしようとすると、include/xc/ からではなく m68k-toolchain/m68k-elf/include/ のヘッダを使うケースが出てくる。
 `sys/types.h` をincludeすると、`time_t`,`clock_t`の定義がXCと競合する。
 
 workaround: コンパイラオプションに `-D__time_t_defined -D__clock_t_defined` を追加する。
 
-7.2. errno.h
+6.2. errno.h
 
 X68用以外のソース(zlib等)をコンパイルしようとすると、include/xc/ からではなく m68k-toolchain/m68k-elf/include/ のヘッダを使うケースが出てくる。
 `errno.h` をincludeすると、`wint_t`の定義が未定義と怒られる。
 
 workaround: `include/xc/` の中で `error.h` から `errno.h` へのシンボリックリンクを張る。
 
-7.3. HLK で Out of memory
+6.3. HLK で Out of memory
 
 リンクするオブジェクトの数が多いと Out of memory になることがある。
 
 workaround: リンクだけ Human68k 上で実行する。
 
-7.4. AR.X で不正な .A ファイルが作られる
+6.4. AR.X で不正な .A ファイルが作られる
 
 アーカイブするオブジェクトの数が多いと不正な .A (ほぼ空) が作られることがある。
 
