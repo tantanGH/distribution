@@ -67,11 +67,11 @@ IOCSコールを使うことになるのでXCのライブラリが必要にな�
 
     void* malloc_himem(size_t size) {
 
-        struct REGS inRegs = { 0 };     // zero fill
-        struct REGS outRegs = { 0 };    // zero fill
+        struct REGS inRegs = { 0 };     /* zero fill */
+        struct REGS outRegs = { 0 };    /* zero fill */
 
-        inRegs.d0 = 0xF8;               // 0xF8 = IOCS _HIMEM
-        inRegs.d1 = 1;                  // HIMEM_MALLOC
+        inRegs.d0 = 0xF8;               /* 0xF8 = IOCS _HIMEM */
+        inRegs.d1 = 1;                  /* HIMEM_MALLOC */
         inRegs.d2 = size;
 
         TRAP15(&inRegs, &outRegs);
@@ -94,8 +94,8 @@ IOCSコールの呼び出しでTRAP15()を使う前に、まずは REGS構造体
         struct REGS inRegs = { 0 };
         struct REGS outRegs = { 0 };
 
-        inRegs.d0 = 0xF8;           // IOCS _HIMEM
-        inRegs.d1 = 2;              // HIMEM_FREE
+        inRegs.d0 = 0xF8;           /* IOCS _HIMEM */
+        inRegs.d1 = 2;              /* HIMEM_FREE */
         inRegs.d2 = (site_t)addr;
 
         TRAP15(&in_regs, &out_regs);
