@@ -66,3 +66,20 @@ X680x0 の最新の開発環境である xdev68k を使うと、gcc version 10~1
 ![](./images/super2.png)
 
 ![](./images/super3.png)
+
+これによると、最適化オプションをつけない場合は保護のためにa6レジスタを使って新しいスタックフレームを作った上でSUPER()の呼び出しを行なっています。
+
+さらに X68000 側で gcc -S -O でコンパイルした場合のアセンブラコードを見ると、最適化オプションをつけたにも関わらず、a6レジスタでスタックフレームが作られています。
+
+    _main:
+            link a6,#0
+            move.l a3,-(sp)
+            pea 0.w
+            lea _SUPER,a3
+            jbsr (a3)
+            move.l d0,-(sp)
+            jbsr (a3)
+            move.l -4(a6),a3
+            unlk a6
+            rts
+
