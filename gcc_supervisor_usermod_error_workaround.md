@@ -1,4 +1,4 @@
-# X680x0 gcc で ユーザモードに戻る時にバスエラーが発生する件の対応策
+# X680x0 gcc で ユーザモード復帰時のバスエラー対策
 
 ### はじめに
 
@@ -23,6 +23,8 @@ X680x0 の最新の開発環境である xdev68k を使うと、gcc version 10~1
     }
 
 実行してみると、バスエラーの白帯が出ます。ちなみに B_SUPER() にするとアドレスエラーになったりします。
+
+![](./images/super1.png)
 
 ---
 
@@ -58,3 +60,9 @@ X680x0 の最新の開発環境である xdev68k を使うと、gcc version 10~1
 	    nop
 	    unlk a6	
 	    rts
+
+それぞれ似たようなコードですが、せっかくなので AIチャットボットの [ChatGPT](https://openai.com/blog/chatgpt/) に解説してもらいます。
+
+![](./images/super2.png)
+
+![](./images/super3.png)
