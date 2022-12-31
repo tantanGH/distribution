@@ -1,4 +1,4 @@
-# xdev68k install guide for M1 Mac
+# xdev68k install guide for macOS
 
 ### xdev68k
 
@@ -76,7 +76,9 @@ gcc 10.x.0 は M1 Mac に対応できていないので 12.2.0 に変更する�
     GCC_ARCHIVE="gcc-${GCC_VERSION}.tar.gz"
     GCC_SHA512SUM="36ab2267540f205b148037763b3806558e796d564ca7831799c88abcf03393c6dc2cdc9d53e8f094f6dc1245e47a406e1782604eb9d119410d406032f59c1544"
 
-どうしても 10.2.0 のままで行く場合は以下の2ファイルの一部を書き換える必要がある。
+intel CPUの場合は 10.2.0 のままでも大丈夫かも(未確認)。
+
+Apple silicon でどうしても 10.2.0 のままで行く場合は以下の2ファイルの一部を書き換える必要がある。
 
     gcc/config/aarch64/aarch64.h
     gcc/config/host-darwin.c
