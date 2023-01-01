@@ -14,7 +14,7 @@
 具体的には、有志が開発・メンテナンスを継続してくださっているX680x0エミュレータの利用です。
 種類は複数あるのですが、こと macOS を前提にすると、選択肢はほぼ一択で鎌田さんによる XEiJ です。
 
-* [XEiJ](https://stdkmd.net/xeij/)
+* [XEiJ (X68000 Emulator in Java)](https://stdkmd.net/xeij/)
 
 XEiJの大きな特徴は、Javaで開発されているということです。すなわちmacOSを含めJavaが動く環境であればどこでも動作可能となります。
 自分は ARMアーキテクチャの Apple silicon (M1) を搭載した MacBook Air で動かしていますが、動作も非常に軽快ですし、使っていて違和感がありません。
@@ -64,4 +64,50 @@ adoptiumのパッケージから導入した場合は以下にインストール
 
 ---
 
-### XEiJ の導入
+### XEiJ のダウンロードとインストール
+
+XEiJの配布サイトよりZIP形式のファイルをダウンロードします。
+
+    [https://stdkmd.net/xeij/](https://stdkmd.net/xeij/)
+
+この文章執筆時点では version 0.22.10.18 が最新です。
+
+macOSネイティブアプリケーションではありませんので、導入する先のフォルダは自分で決めます。
+ただし、今後新バージョンがリリースされた時に上書きインストールしなくても良いように、バージョン名を含めたフォルダに展開しておくのが無難です。
+
+例えば
+
+     /Users/(ユーザ名)/Documents/XEiJ/XEiJ_0221018/
+    
+などです。ちなみに自分が Documents の入れているのは iCloud でのバックアップ対象にしているからです。
+
+
+---
+
+### XEiJ の起動
+
+XEiJを起動するには Finder から XEiJ.jar をダブルクリックします。XEiJのjarは起動用の情報が中に含まれているので、OpenJDKが正しく導入されていればこれだけで起動できます。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij2.png)
+ 
+
+ただし、最初はこのようなセキュリティの警告が出て起動できません。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij3.png)
+
+
+そこで、次のような操作を行います。
+
+- Finder で XEiJ.jar を選択。
+- Control キーを押しながらポップアップメニューを出す(右クリックもしくはダブルタップ)
+- 「開く」を選択
+- マルウェアかどうかの確認ダイアログが表示されるので、「開く」を選択
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij4.png)
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij5.png)
+
+
+この操作が必要なのは最初の1回だけです。次回からはXEiJ.jarのダブルクリックのみで起動できます。
+
+[参照: Appleのサポート](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)
