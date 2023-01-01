@@ -376,5 +376,3 @@ KeyWitch.X は CONFIG.SYS に以下のように追加してください。
 
 このような素晴らしいX680x0エミュレータを設計開発・公開されている鎌田さんに改めて感謝申し上げます。
 そして一人でも多くの今Macを使っている元X68ユーザと(あるいは元でなくとも)この楽しみを共有できることを願います。
-
-![](https://github.com/tantanGH/distribution/raw/main/images/usagi2s.png)
