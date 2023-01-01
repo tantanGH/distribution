@@ -107,7 +107,16 @@ XEiJを起動するには Finder から XEiJ.jar をダブルクリックしま�
 
 ![](https://github.com/tantanGH/distribution/raw/main/images/xeij5.png)
 
-
 この操作が必要なのは最初の1回だけです。次回からはXEiJ.jarのダブルクリックのみで起動できます。
 
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij6.png)
+
+このように起動できればokです。
+
 [参照: Appleのサポート](https://support.apple.com/ja-jp/guide/mac-help/mh40616/mac)
+
+---
+
+### SHARPより無償公開されたOSおよび関連ソフトウェアのダウンロード
+
