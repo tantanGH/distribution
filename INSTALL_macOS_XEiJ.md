@@ -68,7 +68,7 @@ adoptiumのパッケージから導入した場合は以下にインストール
 
 XEiJの配布サイトよりZIP形式のファイルをダウンロードします。
 
-    [https://stdkmd.net/xeij/](https://stdkmd.net/xeij/)
+* (XEiJ)(https://stdkmd.net/xeij/)
 
 この文章執筆時点では version 0.22.10.18 が最新です。
 
