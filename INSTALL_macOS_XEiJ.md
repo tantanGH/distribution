@@ -118,5 +118,39 @@ XEiJを起動するには Finder から XEiJ.jar をダブルクリックしま�
 
 ---
 
-### SHARPより無償公開されたOSおよび関連ソフトウェアのダウンロード
+### 起動用HDDイメージの作成
+
+エミュレータ本体は起動できましたが、このままではOSが起動しないので何もできません。
+
+引き続いて起動用のHDDイメージをここから作成していきます。
+
+XEiJウィンドウ内のメニューから、ファイル → SCSI → 一番下の SCSIハードディスクのイメージファイルの新規作成 を選択します。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij7.png)
+
+
+* ファイル名は自由。ただし拡張子は .HDS で。
+* 容量は起動用なので100MBもあれば十分かと思います。実際にここで指定したサイズのファイルがmacOS上に作られます。
+* セクタサイズはデフォルトの512バイト
+* 領域確保はデフォルトでチェック済
+* HUMAN.SYS と COMMAND.X もデフォルトでチェック済
+
+これらを確認したのち 「フォーマットを開始する」 ボタンを押します。フォーマットは一瞬で完了します。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij8.png)
+
+
+Finder で今指定した　HDSファイルが作成されていることを確認し、再び XEiJ の ファイル - SCSI メニューを開きます。
+一番左上の "0" の部分をクリックすると SCSIデバイス0 が有効になりますので、その3つ右にある書類アイコンをクリックして先ほどのHDSファイルを指定します。
+指定できたら 「ここから再起動」 ボタンを押してエミュレータ内のX68000を再起動します。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij9.png)
+
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij7.png)
+
+
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij7.png)
+
 
