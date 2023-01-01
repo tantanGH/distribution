@@ -1,4 +1,4 @@
-# xdev68k install guide for macOS
+# macOS ユーザのための X680x0 クロス開発環境 xdev68k 導入ガイド
 
 ### xdev68k
 
