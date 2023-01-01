@@ -144,7 +144,7 @@ Finder で今指定した　HDSファイルが作成されていることを確�
 一番左上の "0" の部分をクリックすると SCSIデバイス0 が有効になりますので、その3つ右にある書類アイコンをクリックして先ほどのHDSファイルを指定します。
 指定できたら 「ここから再起動」 ボタンを押してエミュレータ内のX68000を再起動します。
 
-![](https://github.com/tantanGH/distribution/raw/main/images/xeij9.png)
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij9a.png)
 
 
 このように Human68k version 3.02 が起動できればokです。
