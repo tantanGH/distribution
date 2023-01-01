@@ -153,3 +153,13 @@ Finder で今指定した　HDSファイルが作成されていることを確�
 
 
 ---
+
+### SHARP から無償提供されたソフトウェアイメージのダウンロード
+
+このままでは COMMAND.X が起動しただけで、再び何もできない状態ですので、その他の Human68k 標準ソフトウェアをHDDイメージ上に導入します。
+
+まずは XEiJ と同じ鎌田さんのサイトで保守されているライブラリから、Human68k のFDディスクイメージをダウンロード
+
+* [http://retropc.net/x68000/software/sharp/human302/](http://retropc.net/x68000/software/sharp/human302/)
+
+このイメージは LZH 形式で圧縮されています。macOSのFinderでは
