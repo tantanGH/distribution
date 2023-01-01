@@ -1,4 +1,4 @@
-# macOS ユーザのための X680x0 エミュレータ XEiJ 導入ガイド (未完成)
+# macOS ユーザのための X680x0 エミュレータ XEiJ 導入ガイド (工事中)
 
 2023.1 tantan
 
@@ -16,3 +16,43 @@
 
 * [XEiJ](https://stdkmd.net/xeij/)
 
+XEiJの大きな特徴は、Javaで開発されているということです。すなわちJavaが動く環境であればどこでも動作可能となります。
+自分は Apple silicon (M1) を搭載した MacBook Air で動かしていますが、動作も非常に軽快ですし、使っていて違和感がありません。
+このドキュメントは macOS にこの XEiJ を導入する際のちょっとしたことを覚書として残しておくものです。
+
+---
+
+### OpenJDK のダウンロード
+
+macOSにはもう標準でJavaが付属することはなくなったので、自分で導入する必要があります。
+Javaの本家は Sun Microsystems → 買収されて Oracle となっていますが、Oracleの提供するOracle JDKは一度有料化されました。
+その後再び無償化したのですが、今後も不透明なので、ここはオープン版のOpenJDKを導入するのが確実です。
+
+macOS用のOpenJDKは以下からダウンロードできます。2022.10月版のXEiJを動かすにはOpenJDKバージョン19が必要です。
+
+* [openjdk.org](https://jdk.java.net/19/)
+* [adoptium.net](https://adoptium.net/)
+
+2つあるサイトのうち、上は本家なのですが、バイナリ配布形態が素の `*.tar.gz` のみとなっています。
+下のadoptiumの方は `*.pkg` でインストーラで導入できますので、個人的にはこちらをお勧めします。
+Eclipse Foundationによる管理下にあるサイトで信頼できます。
+
+Apple silicon の Mac を使っている場合は aarch64 もしくは arm64 となっているパッケージを、intel CPU の Mac を使っている場合は x64 もしくは x86_64 のパッケージを導入します。
+
+既に他のJDKを導入済みであっても、複数バージョンを同居させることが可能です。
+adoptiumのパッケージから導入した場合は以下にインストールされます。
+
+    /Library/Java/JavaVirtualMachines/temurin-19.jdk/
+
+導入後、新しいターミナルを開いて `java -version` でバージョンを確認します。
+
+    $ java -version
+    openjdk version "19.0.1" 2022-10-18
+    OpenJDK Runtime Environment Temurin-19.0.1+10 (build 19.0.1+10)
+    OpenJDK 64-Bit Server VM Temurin-19.0.1+10 (build 19.0.1+10, mixed mode)
+    
+バージョン19が表示されればokです。
+
+---
+
+### XEiJ の導入
