@@ -43,8 +43,8 @@ macOS用のOpenJDKは以下からダウンロードできます。2022.10月版�
 * [adoptium.net](https://adoptium.net/)
 
 2つあるサイトのうち、上は本家なのですが、バイナリ配布形態が素の `*.tar.gz` のみとなっています。
-下のadoptiumの方は `*.pkg` でインストーラで導入できますので、個人的にはこちらをお勧めします。
-Eclipse Foundationによる管理下にあるサイトで信頼できます。
+下のadoptiumの方は `*.pkg` でインストーラ導入できますので、個人的にはこちらをお勧めします。
+Eclipse Foundationによる管理下にあるサイトで信頼できます。ちなみに以前は AdoptJDK という名前でしたが移管されたそうです。
 
 Apple silicon の Mac を使っている場合は aarch64 もしくは arm64 となっているパッケージを、intel CPU の Mac を使っている場合は x64 もしくは x86_64 のパッケージを導入します。
 
