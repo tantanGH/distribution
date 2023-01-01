@@ -93,7 +93,7 @@ macOSネイティブアプリケーションではありませんので、導入
 
 例えば
 
-     /Users/(ユーザ名)/Documents/XEiJ/XEiJ_030101/
+     /Users/(ユーザ名)/Documents/XEiJ/XEiJ_0230101/
     
 などです。ちなみに自分が Documents (書類) フォルダの中に入れているのは iCloud でのバックアップ対象にしているからです。
 
