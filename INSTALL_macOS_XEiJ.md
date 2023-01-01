@@ -147,10 +147,9 @@ Finder で今指定した　HDSファイルが作成されていることを確�
 ![](https://github.com/tantanGH/distribution/raw/main/images/xeij9.png)
 
 
-![](https://github.com/tantanGH/distribution/raw/main/images/xeij7.png)
+このように Human68k version 3.02 が起動できればokです。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij10.png)
 
 
-
-![](https://github.com/tantanGH/distribution/raw/main/images/xeij7.png)
-
-
+---
