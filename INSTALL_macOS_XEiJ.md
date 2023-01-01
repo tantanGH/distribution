@@ -23,7 +23,7 @@ XEiJの大きな特徴は、Javaで開発されているということです。
 
 作者の鎌田さんは自分が現役でX68000XVIの実機を使っていた頃からお名前を随所でお見かけしていたレジェンドの一人でもあり、060turboを含めた多くの拡張ハードウェア用のドライバやアプリケーションなどを開発されておられました。まさにX680x0を知り尽くした一人によるエミュレータと言えます。
 
-このドキュメントは macOS にこの XEiJ を導入する際のいくつかのポイントを覚書として残しておくものです。
+このドキュメントは XEiJファンの一人として、macOS にこの XEiJ を導入する際のいくつかのポイントを覚書として残しておくものです。
 
 なお、これ以外に macOS で動作するものとして、X680x0のコマンドラインアプリケーションをエミュレーション実行できる run68 というソフトウェアがあります。
 これはこれで非常に強力で、導入必須とも言えるのですが、このドキュメントでは割愛します。
@@ -158,8 +158,113 @@ Finder で今指定した　HDSファイルが作成されていることを確�
 
 このままでは COMMAND.X が起動しただけで、再び何もできない状態ですので、その他の Human68k 標準ソフトウェアをHDDイメージ上に導入します。
 
-まずは XEiJ と同じ鎌田さんのサイトで保守されているライブラリから、Human68k のFDディスクイメージをダウンロード
+まずは XEiJ と同じ鎌田さんのサイトで保守されているX68000 LIBRARYから、Human68k のFDディスクイメージをダウンロード
 
 * [http://retropc.net/x68000/software/sharp/human302/](http://retropc.net/x68000/software/sharp/human302/)
 
-このイメージは LZH 形式で圧縮されています。macOSのFinderでは
+このイメージは LZH 形式で圧縮されています。macOSのFinderでは LZH 形式はサポートされていないので、展開のためには別途ソフトウェアの導入が必要です。
+
+具体的には macOS版の 7zip もしくは lha を導入する必要があります。
+
+これらはいずれも macOS向け非公式パッケージ管理ツールである Homebrew を通して導入することができます。
+
+* [Homebrew](https://brew.sh/)
+
+Homebrew がまだ入っていないのであれば、先にHomebrew を導入します。上記サイトのトップページにあるワンライナーをコピーして、Terminalを開いて実行します。
+
+続いて 7zip と lha を導入します。
+
+    $ brew install p7zip
+    $ brew install lha
+
+これで LZH ファイルが展開できるようになりました。例えば 7zip を使って先ほどダウンロードした Human68k のLZHを展開するならば、
+
+    $ 7z x HUMN302I.LZH 
+
+とすればokです。
+
+    $ ls HUMAN302.XDF
+
+として HUMAN302.XDF イメージファイルが展開されたことを確認します。
+
+X68000 LIBRARYでは無償公開された他の製品もディスクイメージ形式でダウンロードできますので、必要に応じて取得してください。
+
+---
+
+### 起動HDDイメージ内に Human68k 3.02 のファイルをコピー
+
+XEiJ に戻り、ファイル → FD のメニューから、先ほど展開できた HUMAN302.XDF を選択します。
+
+ここから再起動を選んでFDから再起動します。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij11.png)
+
+このFDイメージにはCOMMAND.Xだけでなく、他の標準ファイル群も含まれていますので、各種デバイスドライバなどが登録されていく様子がわかります。
+
+コマンドプロンプトで、
+
+    drive
+
+と打ち込んで現在のドライブの認識状況を確認します。A: と B: がFDDで、C:が先ほど作成した起動用のHDDイメージになります。
+
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij12.png)
+
+
+この状態で、A:のFDの内容をC:のHDDにコピーします。コピーには `COPYALL` コマンドを使います。
+
+    copyall *.* c:
+
+これでA:のFDの内容がC:のHDDに丸ごとコピーされました。
+
+ファイル → FD のメニューからイジェクトアイコンを選択し、FDイメージをアンマウントします。
+
+続いて MPU → リセット を選択して、XEiJ 内の X68000 をリセットします。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij13.png)
+
+HDDから再起動すると、今度はデバイスドライバなども登録されました。
+
+`drive` コマンドを使ってドライブの状況を確認すると、起動ディスクとなったHDDが A:、FDDが B:とC: になったことが分かります。
+
+Human68k はこのように起動したドライブを強制的に A: ドライブとしてしまうのでちょっと使い勝手が悪いことがあります。
+
+特に Windows の経験が長いと C: ドライブが起動HDDドライブで、FDDはA:とB:に固定したいところです。
+
+このためには先ほどからの `drive` コマンドを使うことができます。
+このコマンドはドライブレターの入れ替えにも対応しています。
+
+この入れ替えを自動的に行うために、OS起動時に自動実行される `AUTOEXEC.BAT` ファイルを更新します。
+
+    ed AUTOEXEC.BAT
+
+のコマンドで Human68k 標準のテキストエディタ ED が起動できます。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij14.png)
+
+2行目にある PATH の行の頭に `C:\;C:\SYS;C:\BIN;`を挿入します。
+カーソルキーで一番下まで移動し、3行加えます。
+
+    \BIN\DRIVE.X B: C:
+    \BIN\DRIVE.X C: A:
+
+ESCを押してXキーを押すと、ファイルを保存してエディタを終了できます。
+
+MPU メニューからリセットを行います。
+
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij15.png)
+
+今度はいきなりコマンドプロンプトまで行かず、見慣れない画面になりました。
+これは CONFIGED というデバイスドライバ登録用の CONFIG.SYS の内容を一つ一つ調整できるツールです。
+
+CONFIG.SYSの最後に `EXCONFIG=\SYS\CONFIGED.X` として登録されていたためにこれが起動しました。
+
+さしあたってここではESCキーを押せばここから抜け、通常通り起動シーケンスが流れます。
+
+![](https://github.com/tantanGH/distribution/raw/main/images/xeij16.png)
+
+
+無事ドライブレターを固定することができました。
+
+---
