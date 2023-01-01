@@ -53,7 +53,7 @@ macOSにはもう標準でJavaが付属することはなくなったので、�
 Javaの本家は Sun Microsystems → 買収されて Oracle となっていますが、Oracleの提供するOracle JDKは一度有料化されました。
 その後再び無償化したのですが、今後も不透明なので、ここはオープン版のOpenJDKを導入するのが確実です。
 
-macOS用のOpenJDKは以下からダウンロードできます。2022.10月版のXEiJを動かすにはOpenJDKバージョン19が必要です。
+macOS用のOpenJDKは以下からダウンロードできます。0.23.01.01月版のXEiJを動かすにはOpenJDKバージョン19が必要です。
 
 * [openjdk.org](https://jdk.java.net/19/)
 * [adoptium.net](https://adoptium.net/)
