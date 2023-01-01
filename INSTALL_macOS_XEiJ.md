@@ -362,7 +362,7 @@ macOS 側で日本語キーボードを利用している場合は、特に気�
 
 ただし、この状態ではまだMacの英語キーボードがXEiJ内のX68000で日本語キーボードとして認識されている状態にあります。ここからさらにX68000側のキー配列入れ替えソフトの導入が必要です。再び鎌田さんが作成された KeyWitch.X を使います。
 
-    (KeyWitch.X)[http://retropc.net/x68000/software/system/key/keywitch/]
+* (KeyWitch.X)[http://retropc.net/x68000/software/system/key/keywitch/]
 
 KeyWitch.X は CONFIG.SYS に以下のように追加してください。
 
