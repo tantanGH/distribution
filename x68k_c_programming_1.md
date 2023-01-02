@@ -1,6 +1,6 @@
 # 令和に始める X680x0 C言語 プログラミング その1
 
-v1.0 2023.1.1 tantan
+v1.0 2023.1.2 tantan
 
 ### はじめに
 
@@ -47,6 +47,15 @@ X68000Z の登場を機に一気に盛り上がりを見せている X680x0界�
 渡してあげることで、なんちゃってオブジェクト指向が実現できると言えます。
 
 別の構造体を定義すれば別のインスタンスというわけです。これでステートフルなクラスっぽくなります。
+
+    // prototype declarations
+    void init_png(PNG_DECODE_HANDLE* png);
+    void set_png_header(PNG_DECODE_HANDLE* png, PNG_HEADER* png_header);
+    void quit_png(PNG_DEDCODE_HANDLE* png);
+    int load_png_image(PNG_DECODE_HANDLE* png, const char* png_file_name );
+    int describe_png_image(PNG_DECODE_HANDLE* png, const char* png_file_name);
+
+こんな感じです。
 
 逆にステートレスな static メソッドしかないようなユーティリティクラスの場合はわざわざそこまでやらなくとも、関数のグルーピングと名前付けの工夫だけで良いかと思います。
 
