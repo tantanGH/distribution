@@ -71,4 +71,35 @@ C言語でプログラムを書いていて困るのが例外処理です。Exce
 
 C言語のgotoは try-catch の置き換えと割り切って今は使うようになりました。
 
+        int rc = 0;
 
+        ....
+
+        if (異常1発生) {
+            rc = 1;
+            goto catch;
+        }
+        
+        ....
+        
+        if (異常2発生) {
+            rc = 2;
+            goto catch;
+        }
+        
+        ....
+
+
+    catch:
+        if (buffer1 != NULL) {
+            free(buffer1);
+            buffer1 = NULL;
+        }
+        if (fp != NULL) {
+            fclose(fp);
+            fp = NULL;
+        }
+        return rc;
+    }
+
+こんな感じですかね。
