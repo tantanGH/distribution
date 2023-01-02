@@ -48,12 +48,12 @@ X68000Z の登場を機に一気に盛り上がりを見せている X680x0界�
 
 別の構造体を定義すれば別のインスタンスというわけです。これでステートフルなクラスっぽくなります。
 
-    // prototype declarations
-    void init_png(PNG_DECODE_HANDLE* png);
-    void set_png_header(PNG_DECODE_HANDLE* png, PNG_HEADER* png_header);
-    void quit_png(PNG_DECODE_HANDLE* png);
-    int load_png_image(PNG_DECODE_HANDLE* png, const char* png_file_name );
-    int describe_png_image(PNG_DECODE_HANDLE* png, const char* png_file_name);
+    // prototype declarations for png
+    void png_init(PNG_DECODE_HANDLE* png);
+    void png_set_header(PNG_DECODE_HANDLE* png, PNG_HEADER* png_header);
+    void png_close(PNG_DECODE_HANDLE* png);
+    int png_load(PNG_DECODE_HANDLE* png, const char* png_file_name );
+    int png_describe(PNG_DECODE_HANDLE* png, const char* png_file_name);
 
 こんな感じです。
 
