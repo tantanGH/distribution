@@ -1,4 +1,4 @@
-# X680x0 / Windows ユーザ向けの Python 活用ガイド
+# X680x0 / Windows ユーザ向けの Python 導入ガイド
 
 2022.12 tantan
 
