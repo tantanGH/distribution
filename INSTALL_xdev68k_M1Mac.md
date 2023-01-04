@@ -173,12 +173,14 @@ workaround: コンパイラオプションに `-D__time_t_defined -D__clock_t_de
 X68用以外のソース(zlib等)をコンパイルしようとすると、include/xc/ からではなく m68k-toolchain/m68k-elf/include/ のヘッダを使うケースが出てくる。
 `errno.h` をincludeすると、`wint_t`の定義が未定義と怒られる。
 
+workaround: 自分で定義する。
 workaround: `include/xc/` の中で `error.h` から `errno.h` へのシンボリックリンクを張る。
 
 6.3. HLK で Out of memory
 
 リンクするオブジェクトの数が多いと Out of memory になることがある。
 
+workaround: XBASIC関数を使っていないならBASLIB.Lのリンクはしない。
 workaround: リンクだけ Human68k 上で実行する。
 
 6.4. AR.X で不正な .A ファイルが作られる
