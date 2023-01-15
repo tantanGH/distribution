@@ -105,11 +105,11 @@ X680x0 では最大 18+3 小文字ありのファイル名を使うことがで�
 
 1. Spotlight 用インデックス 
 
-Spotlight (検索) のためのインデックスを作りにいってしまいます。これが **.Spotlight-V100** というピリオドで始まる長い名前のフォルダを作ってしまいます。
+Spotlight (検索) のためのインデックスを作りにいってしまいます。これが **.Spotlight-V100** というピリオドで始まりハイフンも含む長い名前のフォルダを作ってしまいます。
 
 以下などを参考に、外付けディスクは Spotlight の検索対象から外す設定を行います。
-https://dezisaru.com/imac/4304.html
-https://1010uzu.com/blog/external-hard-drive-wont-eject-due-to-spotlight-on-mac
+- https://dezisaru.com/imac/4304.html
+- https://1010uzu.com/blog/external-hard-drive-wont-eject-due-to-spotlight-on-mac
 
 Terminal などから直接 MO のボリュームにアクセスしてできてしまったフォルダは削除しておいた方が良いかと思います。
 
