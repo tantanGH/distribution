@@ -111,7 +111,7 @@ Spotlight (検索) のためのインデックスを作りにいってしまい�
 - https://dezisaru.com/imac/4304.html
 - https://1010uzu.com/blog/external-hard-drive-wont-eject-due-to-spotlight-on-mac
 
-Terminal などから直接 MO のボリュームにアクセスしてできてしまったフォルダは削除しておいた方が良いかと思います。
+Terminal などから直接 MO のボリュームにアクセスし、作られてしまったフォルダは削除しておいた方が良いかと思います。
 
 2. 外付けメディアのための管理フォルダ
 
