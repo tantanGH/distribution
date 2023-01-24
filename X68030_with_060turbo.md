@@ -139,6 +139,7 @@ Mac上で使っているX68エミュレータでは060turboモードを常用し
 https://user-images.githubusercontent.com/121137457/214436314-69ed9811-f427-4bc8-af8a-528ac32805e7.mp4
 
 X68030 + 060turbo + ローカルメモリでのアニメーションGIF再生例 (384x256モード, 300x225px, 30fps)
+
 ---
 
 ## 更新履歴
