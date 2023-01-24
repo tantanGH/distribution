@@ -136,9 +136,7 @@ Mac上で使っているX68エミュレータでは060turboモードを常用し
 
 ここからさらに使い込んでいってまた気づいたことがあれば加筆していこうと思います。
 
-* [X68030+060turbo+ローカルメモリでの動画再生例 (384x256画面モード, 300x212px, 30fps)](https://github.com/tantanGH/distribution/blob/main/images/060turbo_demo.mp4?raw=true)
-
-
+https://user-images.githubusercontent.com/121137457/214436314-69ed9811-f427-4bc8-af8a-528ac32805e7.mp4
 
 ---
 
