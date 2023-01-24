@@ -114,7 +114,7 @@ Mac上で使っているX68エミュレータでは060turboモードを常用し
 
 ドキドキしながら68030モードで起動して再びメモリチェック。
 
-<img src='images/060turbo_09.jpeg'/>
+<img src='images/060turbo_09a.jpeg'/>
 
 今度は増設した 0x400000 - 0xBFFFFF までどの区画もバッチリです！
 
