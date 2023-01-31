@@ -139,7 +139,8 @@ Mac上で使っているX68エミュレータでは060turboモードを常用し
 
 https://user-images.githubusercontent.com/121137457/215325813-f0d3b2cc-ab59-48f8-b1fe-951dca339fa2.mp4
 
-X68030 + 060turbo + ローカルメモリ 実機と[GIFEX.X](https://github.com/tantanGH/gifex)でのアニメーションGIF動画再生例 (384x256画面モード, 300x212px, 256色パレット, 30fps)
+X68030 + 060turbo + ローカルメモリ 実機と[GIFEX.X](https://github.com/tantanGH/gifex)でのアニメーションGIF動画再生例
+(384x256画面モード, 300x212px, 256色パレット, 30fps)
 
 ---
 
