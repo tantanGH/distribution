@@ -282,6 +282,7 @@ X68030本体前面にあるヘッドフォン端子は一応生きてはいる�
 
 - [UGREEN オーディオケーブル 3.5mm 分配ケーブル](https://www.amazon.co.jp/dp/B07BDKZHPW)
 
+<img src='images/portable3.jpeg'/>
 
 ---
 
