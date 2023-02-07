@@ -290,7 +290,7 @@ X68030本体前面にあるヘッドフォン端子は一応生きてはいる�
 
 2023年2月
 
-<img width='840' src='images/system-diagram2.png'/>
+<img width='840' src='images/system-diagram3.png'/>
 
 - 遊んでいるラズパイを有効活用したい... (ras68k-extの再販待ち)
 
