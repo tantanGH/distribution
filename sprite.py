@@ -34,7 +34,7 @@ x68k.iocs(x68k.i.SP_DEFCG,d1=0,d2=0,a1=uctypes.addressof(bytes(sp_pat_star)))
 # set sprite palette
 machine.mem16[ REG_SP_PALETTE + 1 * 16 * 2 + 1 * 2 ] = 0b11111_11111_11111_1
 machine.mem16[ REG_SP_PALETTE + 2 * 16 * 2 + 1 * 2 ] = 0b01000_10000_00110_1
-machine.mem16[ REG_SP_PALETTE + 3 * 16 * 2 + 1 * 2 ] = 0b10111_10111_10111_1
+machine.mem16[ REG_SP_PALETTE + 3 * 16 * 2 + 1 * 2 ] = 0b10001_10001_10001_1
 
 # initialize 3D star positions
 star_x = []
