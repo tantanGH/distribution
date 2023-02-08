@@ -160,13 +160,13 @@ Mac上で使っているX68エミュレータ(M.KamadaさんのXEiJ)では060tur
 https://user-images.githubusercontent.com/121137457/215325813-f0d3b2cc-ab59-48f8-b1fe-951dca339fa2.mp4
 
 X68030 + 060turbo + ローカルメモリ 実機と[GIFEX.X](https://github.com/tantanGH/gifex)でのアニメーションGIF動画再生例
-(画面モード384x256x65536色, 元データ300x212x8bitパレット, 30fps, C言語のみ)
+(画面モード384x256x65536色, 元データ300x212x8bitパレット, 30fps, C言語のみ, バッファに事前展開済)
 
 
 
 https://user-images.githubusercontent.com/121137457/217380073-125a2922-fda8-4e97-b53a-571fa3ef20e7.mp4
 
-X68030 + 060turbo + ローカルメモリ 実機と[PNGSCALE.X](https://github.com/tantanGH#pngscalex)でのリアルタイムPNG画像拡大縮小回転例
+X68030 + 060turbo + ローカルメモリ 実機と[PNGSCALE.X](https://github.com/tantanGH#pngscalex)での複数PNG画像リアルタイム拡大縮小回転例
 (画面モード384x256x65536色, 元データ320x320 2枚, C言語と一部インラインアセンブラ)
 
 
