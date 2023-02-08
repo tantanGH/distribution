@@ -11,9 +11,9 @@ NUM_STARS = 32
 STAR_SPEED = 40
 
 x68k.crtmod(12,True)
-
 x68k.iocs(x68k.i.B_SUPER,a1=0)
 x68k.iocs(x68k.i.G_CLR_ON)
+x68k.iocs(x68k.i.OS_CUROF)
 
 # reset sprite
 x68k.iocs(x68k.i.SP_INIT)
@@ -82,3 +82,4 @@ while True:
     else:
       machine.mem16[ REG_SP_SCROLL + i * 8 + 6 ] = 0
 
+x68k.iocs(x68k.i.OS_CURON)
