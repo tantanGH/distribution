@@ -9,8 +9,8 @@ REG_GPIP       = const(0xE88001)
 
 NUM_STARS = 32
 
-STAR_SPEED_MAX = 128
-STAR_SPEED_MIN = 40
+SHIP_SPEED_MAX = 128
+SHIP_SPEED_MIN = 40
 
 # initialize screen
 x68k.crtmod(12,True)
@@ -49,10 +49,11 @@ for i in range(NUM_STARS):
 star_x2 = [0] * NUM_STARS
 star_y2 = [0] * NUM_STARS
 
-# initialize star speed
-star_speed_x = 0
-star_speed_y = 0
-star_speed_z = STAR_SPEED_MIN
+# initialize 3D ship position and speed
+ship_x = 0
+ship_y = 0
+ship_z = 0
+ship_speed_z = SHIP_SPEED_MIN
 
 # main loop
 while True:
@@ -61,57 +62,64 @@ while True:
   if x68k.iocs(x68k.i.B_SFTSNS):
     break
 
-  # check joystick left/right for X move
+  # check joystick left/right for ship X move
   joy = x68k.iocs(x68k.i.JOYGET,d1=0)
-  if (joy & 0x08) == 0:    # right
-    star_speed_x = -12
-  elif (joy & 0x04) == 0:  # left
-    star_speed_x = 12
-  else:
-    star_speed_x = 0
+  if (joy & 0x04) == 0:    # left
+    ship_x -= 12
+    if ship_x < -1024:
+      ship_x += 2048
+  elif (joy & 0x08) == 0:  # right
+    ship_x += 12
+    if ship_x > 1024:
+      ship_x -= 2048
 
-  # check joystick up/down for Y move
-  if (joy & 0x02) == 0:     # down
-    star_speed_y = -8
-  elif (joy & 0x01) == 0:   # up
-    star_speed_y = 8
-  else:
-    star_speed_y = 0
+  # check joystick up/down for ship Y move
+  if (joy & 0x01) == 0:     # up
+    ship_y -= 8
+    if ship_y < -1024:
+      ship_y += 2048
+  elif (joy & 0x02) == 0:   # down
+    ship_y += 8
+    if ship_y > 1024:
+      ship_y -= 2048
 
-  # check joystick B button for Z acceleration
+  # check joystick B button for ship Z acceleration
   if (joy & 0x40) == 0:     # button B
-    if star_speed_z < STAR_SPEED_MAX:
-      star_speed_z += 1
+    if ship_speed_z < SHIP_SPEED_MAX:
+      ship_speed_z += 1
   else:
-    if star_speed_z > STAR_SPEED_MIN:
-      star_speed_z -= 3
+    if ship_speed_z > SHIP_SPEED_MIN:
+      ship_speed_z -= 3
 
-  # move stars
+  # move ship Z positions
+  ship_z += ship_speed_z
+  if ship_z > 2048:
+    ship_z -= 2048
+
+  # map stars to 2D positions
   for i in range(NUM_STARS):
 
-    if star_speed_x != 0:
-      star_x[i] += star_speed_x
-      if star_x[i] < -1024:
-        star_x[i] += 2048
-      if star_x[i] > 1024:
-        star_x[i] -= 2048
+    rx = star_x[i] - ship_x
+    if rx < -1024:
+      rx += 2048
+    elif rx > 1024:
+      rx -= 2048
 
-    if star_speed_y != 0:
-      star_y[i] += star_speed_y
-      if star_y[i] < -1024:
-        star_y[i] += 2048
-      if star_y[i] > 1024:
-        star_y[i] -= 2048
+    ry = star_y[i] - ship_y
+    if ry < -1024:
+      ry += 2048
+    elif ry > 1024:
+      ry -= 2048
 
-    star_z[i] -= star_speed_z
-    if star_z[i] < 0:
-      star_z[i] += 2048
+    rz = star_z[i] - ship_z
+    if rz < 0:
+      rz += 2048
 
-    w = 512.0 + (2048.0 - 512.0)*(float(star_z[i])/2048.0)
+    w = 512.0 + (2048.0 - 512.0)*(float(rz)/2048.0)
     s = 512.0/w
 
-    star_x2[i] = int(star_x[i] * s) + 256
-    star_y2[i] = int(star_y[i] * s) + 256
+    star_x2[i] = int(rx * s) + 256
+    star_y2[i] = int(ry * s) + 256
 
   # wait vblank
   while (machine.mem8[ REG_GPIP ] & 0x10) == 0:
