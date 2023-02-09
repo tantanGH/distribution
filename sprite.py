@@ -7,9 +7,12 @@ REG_SP_SCROLL  = const(0xEB0000)
 REG_SP_PALETTE = const(0xE82200)
 REG_GPIP       = const(0xE88001)
 
-NUM_STARS = 32
-STAR_SPEED = 40
+NUM_STARS = 48
 
+STAR_SPEED_MAX = 128
+STAR_SPEED_MIN = 32
+
+# initialize screen
 x68k.crtmod(12,True)
 x68k.iocs(x68k.i.B_SUPER,a1=0)
 x68k.iocs(x68k.i.G_CLR_ON)
@@ -49,6 +52,11 @@ for i in range(NUM_STARS):
 star_x2 = [0] * NUM_STARS
 star_y2 = [0] * NUM_STARS
 
+# initialize star speed
+star_speed_x = 0
+star_speed_y = 0
+star_speed_z = STAR_SPEED_MIN
+
 # main loop
 while True:
 
@@ -56,13 +64,55 @@ while True:
   if x68k.iocs(x68k.i.B_SFTSNS):
     break
 
+  # check joystick left/right for X move
+  joy = x68k.iocs(x68k.i.JOYGET,d1=0)
+  if (joy & 0x08) == 0:    # right
+    star_speed_x = -12
+  elif (joy & 0x04) == 0:  # left
+    star_speed_x = 12
+  else:
+    star_speed_x = 0
+
+  # check joystick up/down for Y move
+  if (joy & 0x02) == 0:     # down
+    star_speed_y = -8
+  elif (joy & 0x01) == 0:   # up
+    star_speed_y = 8
+  else:
+    star_speed_y = 0
+
+  # check joystick B button for Z acceleration
+  if (joy & 0x40) == 0:     # button B
+    if star_speed_z < STAR_SPEED_MAX:
+      star_speed_z += 1
+  else:
+    if star_speed_z > STAR_SPEED_MIN:
+      star_speed_z -= 3
+
   # move stars
   for i in range(NUM_STARS):
-    star_z[i] -= STAR_SPEED
+
+    if star_speed_x != 0:
+      star_x[i] += star_speed_x
+      if star_x[i] < -1024:
+        star_x[i] += 2048
+      if star_x[i] > 1024:
+        star_x[i] -= 2048
+
+    if star_speed_y != 0:
+      star_y[i] += star_speed_y
+      if star_y[i] < -1024:
+        star_y[i] += 2048
+      if star_y[i] > 1024:
+        star_y[i] -= 2048
+
+    star_z[i] -= star_speed_z
     if star_z[i] < 0:
       star_z[i] += 2048
-    w = 512.0 + (2048.0-512.0)*(star_z[i]/2048.0)
+
+    w = 512.0 + (2048.0 - 512.0)*(float(star_z[i])/2048.0)
     s = 512.0/w
+
     star_x2[i] = int(star_x[i] * s) + 256
     star_y2[i] = int(star_y[i] * s) + 256
 
@@ -82,4 +132,5 @@ while True:
     else:
       machine.mem16[ REG_SP_SCROLL + i * 8 + 6 ] = 0
 
+# cursor on
 x68k.iocs(x68k.i.OS_CURON)
