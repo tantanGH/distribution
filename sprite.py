@@ -93,14 +93,14 @@ while True:
       star_x[i] += star_speed_x
       if star_x[i] < -1024:
         star_x[i] += 2048
-      if star_x[i] > 1024:
+      elif star_x[i] > 1024:
         star_x[i] -= 2048
 
     if star_speed_y != 0:
       star_y[i] += star_speed_y
       if star_y[i] < -1024:
         star_y[i] += 2048
-      if star_y[i] > 1024:
+      elif star_y[i] > 1024:
         star_y[i] -= 2048
 
     star_z[i] -= star_speed_z
