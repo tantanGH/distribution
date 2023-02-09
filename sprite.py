@@ -7,10 +7,10 @@ REG_SP_SCROLL  = const(0xEB0000)
 REG_SP_PALETTE = const(0xE82200)
 REG_GPIP       = const(0xE88001)
 
-NUM_STARS = 48
+NUM_STARS = 32
 
 STAR_SPEED_MAX = 128
-STAR_SPEED_MIN = 32
+STAR_SPEED_MIN = 40
 
 # initialize screen
 x68k.crtmod(12,True)
