@@ -131,6 +131,7 @@ def main():
           pass
         g0.home(g0_x, g0_y)
 
+    # abort check
     if i >= 999:
       break
 
