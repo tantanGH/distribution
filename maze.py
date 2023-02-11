@@ -74,8 +74,8 @@ def main():
   x68k.iocs(x68k.i.OS_CUROF)
   x68k.iocs(x68k.i.TXFILL,a1=pack('6h',0,0,0,1024,1024,0))
   x68k.iocs(x68k.i.TXFILL,a1=pack('6h',1,0,0,1024,1024,0))
-  x68k.iocs(x68k.i.WINDOW,d1=0,d2=0,d3=1023,d4=1023)
   g0 = x68k.GVRam(0)
+  g0.window(0, 0, 1023, 1023)
   g0.fill(0, 0, 1023, 1023, 0)
   x68k.vpage(1)
   
