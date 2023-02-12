@@ -18,6 +18,8 @@ random.seed(int(time.time() * 10))
 # initialize screen
 x68k.crtmod(12,True)
 x68k.curoff()
+x68k.iocs(x68k.i.TXFILL,a1=pack('6h',0,0,0,1024,1024,0))
+x68k.iocs(x68k.i.TXFILL,a1=pack('6h',1,0,0,1024,1024,0))
 
 # supervisor mode
 s = x68k.super()
