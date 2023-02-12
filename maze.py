@@ -5,9 +5,6 @@ import random
 
 from struct import pack
 
-# GPIP register
-REG_GPIP = const(0xE88001)
-
 # maze size
 MAZE_WIDTH  = 63
 MAZE_HEIGHT = 63
@@ -71,7 +68,7 @@ def main():
 
   # initialize screen
   x68k.crtmod(16, True)
-  x68k.iocs(x68k.i.OS_CUROF)
+  x68k.curoff()
   x68k.iocs(x68k.i.TXFILL,a1=pack('6h',0,0,0,1024,1024,0))
   x68k.iocs(x68k.i.TXFILL,a1=pack('6h',1,0,0,1024,1024,0))
   g0 = x68k.GVRam(0)
@@ -122,14 +119,10 @@ def main():
         pos = dig_positions.pop()         # pop from the candidate position list
 
       # graphic scroll
-      with x68k.Super():  
-        g0_x = (g0_x + dx[i % 8] + 1024) % 1024
-        g0_y = (g0_y + dy[i % 8] + 1024) % 1024
-        while (machine.mem8[ REG_GPIP ] & 0x10) == 0:
-          pass
-        while (machine.mem8[ REG_GPIP ] & 0x10) != 0:
-          pass
-        g0.home(g0_x, g0_y)
+      g0_x = (g0_x + dx[i % 8] + 1024) % 1024
+      g0_y = (g0_y + dy[i % 8] + 1024) % 1024
+      x68k.vsync()
+      g0.home(g0_x, g0_y)
 
     # abort check
     if i >= 999:
@@ -140,7 +133,7 @@ def main():
     time.sleep(3)
 
   # cursor on
-  x68k.iocs(x68k.i.OS_CURON)
+  x68k.curon()
 
 if __name__ == "__main__":
   main()
