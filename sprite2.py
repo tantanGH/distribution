@@ -18,7 +18,7 @@ class SpriteUtil:
   def set_palette(self, code, block, color_code, vsync=False):
     if (code < 0 or code > 15 or block < 1 or block > 15):
       raise RuntimeError('incorrect parameter')
-    v = 1 if vsync else 0
+    v = 0 if vsync else 1
     x68k.iocs(x68k.i.SPALET, d1=pack('L',(v<<31)|code), d2=block, d3=color_code)
   
   def set_palettes(self, block, color_codes, vsync=0):
@@ -39,9 +39,9 @@ class SpriteUtil:
   def scroll(self, sprite_no, x, y, pl_block, pt_code, prw, vsync=False):
     if (sprite_no < 0 or sprite_no > 127):
       raise RuntimeError('incorrect parameter')
-    # as SP_REGST is pretty slow, we directly access prite scroll registers
-    #v = 1 if vsync else 0
+    #v = 0 if vsync else 1
     #x68k.iocs(x68k.i.SP_REGST, d1=pack('L',(v<<31)|sprite_no), d2=x, d3=y, d4=(pl_block<<8)|pt_code, d5=prw)    
+    # as SP_REGST is pretty slow, we directly access sprite scroll registers
     machine.mem16[ REG_SP_SCROLL + sprite_no * 8 + 0 ] = 16 + x
     machine.mem16[ REG_SP_SCROLL + sprite_no * 8 + 2 ] = 16 + y
     machine.mem16[ REG_SP_SCROLL + sprite_no * 8 + 4 ] = (pl_block << 8) | pt_code
