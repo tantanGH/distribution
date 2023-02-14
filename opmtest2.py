@@ -65,19 +65,19 @@ def main():
 
     # track 1 MML
     1: """
-@1q7l4v15o5
+@1q7l8v15o5
 c+2&c+8d2e4. d2&d8c+2d4. a1&a2 b4a8g4f+4.e8d4.
 """,
 
     # track 2 MML
     2: """
-@1q5l8v14o4
+@1q7l8v14o4
 a2&a8b2<c+4.> b2&b8a2b4. <c+2&c+8d2e4. d2&d8>b2.. 
 """,
 
     # track 3 MML
     3: """
-@1q5l8v15o3
+@1q4l8v15o3
 g4d8g4d8g4d8g4d8 g4d8g4d8g4d8g4d8 f+4c+8f+4c+8f+4c+8f+4c+8 >b4.<c+4d4.e8f+4.
   """,
 
