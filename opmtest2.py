@@ -89,15 +89,15 @@ g4d8g4d8g4d8g4d8 g4d8g4d8g4d8g4d8 f+4c+8f+4c+8f+4c+8f+4c+8 >b4.<c+4d4.e8f+4.
   # opmdrv init
   opmdrv.m_init()
 
-  # track buffer allocation and channel assignment
-  for t in mmls:
-    ch = t
-    opmdrv.m_alloc(t, 1024)
-    opmdrv.m_assign(ch, t)
-
   # setup custom voice data
   for vnum,vdata in voices.items():
     opmdrv.m_vset(vnum, vdata)
+
+  # track buffer allocation and channel assignment
+  for trk in mmls:
+    ch = trk
+    opmdrv.m_alloc(trk, 1024)
+    opmdrv.m_assign(ch, trk)
 
   # setup mml
   for trk,mml in mmls.items():
