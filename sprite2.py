@@ -21,7 +21,7 @@ class SpriteUtil:
     v = 0 if vsync else 1
     x68k.iocs(x68k.i.SPALET, d1=pack('L',(v<<31)|code), d2=block, d3=color_code)
   
-  def set_palettes(self, block, color_codes, vsync=0):
+  def set_palettes(self, block, color_codes, vsync=False):
     for i, cc in enumerate(color_codes):
       self.set_palette(i, block, cc, vsync)
 
