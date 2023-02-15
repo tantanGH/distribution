@@ -7,7 +7,7 @@ class OPMDRV:
   # constructor
   def __init__(self):
     opmdrv_vector = x68k.iocs(x68k.i.B_LPEEK,a1=(0x000400 + 4 * 0xf0))  # check IOCS $F0 vector
-    if opmdrv_vector < 0:
+    if opmdrv_vector < 0 or (opmdrv_vector >= 0xfe0000 and opmdrv_vector <= 0xffffff):
       raise RuntimeError("OPMDRV is not installed.")
 
   # _M_INIT
