@@ -36,6 +36,6 @@ time.sleep(1)
 print("\x1b[m" + "\x1b[0J" + "\x1b[46m" + "Cleared here to end of screen!", end="")
 time.sleep(1)
 
-# reset + clear screen + reset
-print("\x1b[m" + "\x1b[2J" + "\x1b[m" + "All clear and back to home!", end="")
+# reset + clear screen
+print("\x1b[m" + "\x1b[2J" + "All clear and back to home!", end="")
 time.sleep(1)
