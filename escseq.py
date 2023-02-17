@@ -2,6 +2,7 @@ import x68k
 import time
 
 x68k.crtmod(16,True)
+time.sleep(1)
 
 # direct cursor addressing & highlight
 print("\x1b[8;10H" + "\x1b[1m" + "Hello, uPython at (10,8).", end="")
