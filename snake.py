@@ -1,8 +1,7 @@
 import x68k
-import uctypes
 import random
 import time
-import sys
+from uctypes import addressof
 from struct import pack
 
 # randomize
@@ -29,7 +28,8 @@ x68k.curoff()
 
 # print snake
 for y in range(snake_y,32):
-  print(f"\x1b[{y};{snake_x}H" + "\x1b[37m" + "S", end="")
+  s = f"\x1b[{y};{snake_x}H" + "\x1b[37m" + "S"
+  x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
 
 while True:
 
@@ -42,6 +42,16 @@ while True:
     if snake_x < 64:
       snake_x += 1
 
+  # new road blocks line
+  block_line = " " * 64
+  bx1 = random.randint(0,99)
+  if bx1 >= 1 and bx1 <= 62:
+    block_line = block_line[:bx1-1] + "***" + block_line[bx1-1+3:]
+  bx2 = random.randint(0,199)
+  if bx2 >= 1 and bx2 <= 59:
+    block_line = block_line[:bx2-1] + "******" + block_line[bx2-1+6:]
+  block_lines.append(block_line)
+
   # vsync wait
   x68k.vsync()
 
@@ -49,36 +59,30 @@ while True:
   x68k.dos(x68k.d.CONCTRL,pack('hhh',3,0,0))
   x68k.dos(x68k.d.CONCTRL,pack('h',5))
 
-  # new road blocks line
-  block_line = " " * 64
-
-  bx1 = random.randint(0,99)
-  if bx1 >= 1 and bx1 <= 62:
-    block_line = block_line[:bx1-1] + "***" + block_line[bx1-1+3:]
-
-  bx2 = random.randint(0,199)
-  if bx2 >= 1 and bx2 <= 59:
-    block_line = block_line[:bx2-1] + "******" + block_line[bx2-1+6:]
-
-  print(f"\x1b[0;0H" +  "\x1b[32m" + block_line, end="")    
-  block_lines.append(block_line)
+  # print block line
+  s = f"\x1b[0;0H" +  "\x1b[32m" + block_line
+  x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))    
 
   # collision check
   check_line = block_lines.pop(0)
   if (check_line[snake_x-1] == '*'):
-    print("\x1b[14;24H" + "\x1b[46m" + "    OUCH!!!!    ")
+    s = "\x1b[14;24H" + "\x1b[46m" + "    OUCH!!!!    "
+    x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
     break
 
   # snake head
-  print(f"\x1b[{snake_y};{snake_x}H" + "\x1b[37m" + "S", end="")
+  s = f"\x1b[{snake_y};{snake_x}H" + "\x1b[37m" + "S"
+  x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
 
+  # increment score
   score += 100
 
 # display score
-print("\n\x1b[16;24H" + "\x1b[35m" + "YOUR SCORE: " + "\x1b[37m" + f"{score}" + "\x1b[m\n")
+s = "\n\x1b[16;24H" + "\x1b[35m" + "YOUR SCORE: " + "\x1b[37m" + f"{score}" + "\x1b[m\n"
+x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
 
-# clear key buffer
-x68k.dos(x68k.d.KFLUSH,pack('h',0))
+# flush key buffer
+x68k.dos(x68k.d.KFLUSH,pack('h',0))  
 
 # resume function key display mode
 x68k.dos(x68k.d.CONCTRL,pack('hh',14,funckey_mode))
