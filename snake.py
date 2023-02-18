@@ -37,6 +37,7 @@ x68k.dos(x68k.d.CONCTRL,pack('hhh',3,24,8))
 x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(b)))
 time.sleep(2)
 
+# main loop
 while True:
 
   # check left and right keys 
@@ -71,7 +72,7 @@ while True:
 
   # collision check
   check_line = block_lines.pop(0)
-  if (check_line[snake_x-1] == '*'):
+  if check_line[snake_x-1] == '*':
     s = "\x1b[14;24H" + "\x1b[46m" + "   GAME OVER   "
     x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
     break
