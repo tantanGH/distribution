@@ -31,6 +31,13 @@ for y in range(snake_y,32):
   s = f"\x1b[{y};{snake_x}H" + "\x1b[37m" + "S"
   x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
 
+# title
+b = bytes([0x82, 0xd6, 0x82, 0xd1, 0x82, 0xb3, 0x82, 0xf1, 0x8a, 0xeb, 0x8b, 0x40, 0x88, 0xea, 0x94, 0xad])
+x68k.dos(x68k.d.CONCTRL,pack('hhh',3,24,8))
+x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(b)))
+
+time.sleep(2)
+
 while True:
 
   # check left and right keys 
@@ -66,7 +73,7 @@ while True:
   # collision check
   check_line = block_lines.pop(0)
   if (check_line[snake_x-1] == '*'):
-    s = "\x1b[14;24H" + "\x1b[46m" + "    OUCH!!!!    "
+    s = "\x1b[14;24H" + "\x1b[46m" + "   GAME OVER   "
     x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
     break
 
@@ -78,7 +85,7 @@ while True:
   score += 100
 
 # display score
-s = "\n\x1b[16;24H" + "\x1b[35m" + "YOUR SCORE: " + "\x1b[37m" + f"{score}" + "\x1b[m\n"
+s = "\n\x1b[16;24H" + "\x1b[35m" + "YOUR SCORE: " + "\x1b[37m" + f"{score}" + "\x1b[m\r\n"
 x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
 
 # flush key buffer
