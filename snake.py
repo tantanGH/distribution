@@ -50,10 +50,10 @@ while True:
 
   # new road blocks line
   block_line = " " * 64
-  bx1 = random.randint(0,99)
+  bx1 = random.randint(1,100)
   if bx1 >= 1 and bx1 <= 62:
     block_line = block_line[:bx1-1] + "***" + block_line[bx1-1+3:]
-  bx2 = random.randint(0,199)
+  bx2 = random.randint(1,200)
   if bx2 >= 1 and bx2 <= 59:
     block_line = block_line[:bx2-1] + "******" + block_line[bx2-1+6:]
   block_lines.append(block_line)
@@ -86,7 +86,7 @@ while True:
 # display score
 s = "\n\x1b[16;24H" + "\x1b[35m" + "YOUR SCORE: " + "\x1b[37m" + f"{score}" + "\x1b[m\r\n"
 x68k.dos(x68k.d.CONCTRL,pack('hl',1,addressof(s)))
-time.sleep(4)
+time.sleep(2)
 
 # flush key buffer
 x68k.dos(x68k.d.KFLUSH,pack('h',0))  
