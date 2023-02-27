@@ -1,6 +1,5 @@
 import x68k
 import uctypes
-import machine
 import time
 from uctypes import addressof
 from struct import pack
@@ -17,20 +16,20 @@ class MXDRV:
     if bytes(eye_catch) != b'EX16mxdrv206':
       raise RuntimeError("MXDRV is not running.")
 
-  # $02 LOADMML
+  # $02 LOAD_MML
   @micropython.asm_m68k
-  def loadpcm_asm(self, mml, mml_len):
+  def load_mml_asm(self, mml, mml_len):
     movel(0x02,d0)
     movel([16,fp],d1)
     movel([12,fp],a1)
     trap(4)
 
-  def loadmml(self, mml_name, mml_data, use_pdx):
-    mml = bytearray([0,0, 0 if use_pdx else 0xff, 0 if use_pdx else 0xff, 0,270, 0,8])
+  def load_mml(self, mml_name, mml_data, use_pdx):
+    mml = bytearray([0x00, 0x00, 0x00 if use_pdx else 0xff, 0x00 if use_pdx else 0xff, 0x01, 0x0e, 0x00, 0x08])
     mml.extend(mml_name.decode())
-    mml.extend(bytes([0] * len(p)-270))
+    mml.extend(bytes([0] * len(mml)-270))
     mml.extend(mml_data)
-    loadmml_asm(self,mml,len(mml))
+    load_mml_asm(self, mml, len(mml))
 	
   # $03 LOADPCM
   @micropython.asm_m68k
