@@ -2,7 +2,7 @@
 
 注意：内容については全くの無保証です。X68000Z, Raspberry Pi, MIDI機器などに致命的な損傷が出ても対応できませんので、試す場合は自己責任でお願いします。
 
-2023.04.05 tantan
+Apr.2023 tantan
 
 <img src='images/uart-raspi2.png' width='952'/>
 
@@ -104,6 +104,9 @@ X68000Z、Raspberry Pi、MIDI音源のすべての電源を切る。Raspberry Pi
 - X68000Z UART TX  - (ジャンパケーブル) - Raspberry Pi 10番ピン(GPIO15, UART_RXD0)
 
 X68000Z の UART 配線色は付属の説明書参照
+
+6番ピンのすぐ隣の4番ピンは+5Vなので、間違うと短絡して両方破損する可能性が高い。入念に確認する。
+
 
 #### MIDI結線
 
