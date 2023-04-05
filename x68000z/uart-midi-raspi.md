@@ -6,7 +6,7 @@
 
 <img src='images/uart-raspi2.png' width='952'/>
 
-<img src='images/uart-raspi3.jpg' width='800'/>
+<img src='images/uart-raspi3.jpg' width='600'/>
 
 ---
 
