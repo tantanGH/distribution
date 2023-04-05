@@ -76,6 +76,13 @@ Apr.2023 tantan
 
 ### X68000Z のセットアップ
 
+#### Emulator Settings
+
+電源投入後すぐに interrupt ボタンを押し、Setup utility を起動する。
+RS232 ボーレートを 19200bps に設定する。
+
+なお、ZMUSICが直接RS232Cを制御するため、Human68k上での SWITCH.X や SPEED.X による RS232C 設定は不要です。
+
 #### 起動XDFの準備
 
 - Human68k 3.02
@@ -99,12 +106,6 @@ Apr.2023 tantan
 - [tw136c14.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/tw136c14.lzh) ... 21文字ファイル名対応ドライバ TwentyOne.x
 - [ZM208.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/ZM208.LZH) ... ZMUSIC v2 システム
 
-#### Emulator Settings
-
-電源投入後すぐに interrupt ボタンを押し、Setup utility を起動する。
-RS232 ボーレートを 19200bps に設定する。
-
-なお、ZMUSICが直接RS232Cを制御するため、Human68k上での SWITCH.X や SPEED.X による RS232C 設定は不要です。
 
 ---
 
