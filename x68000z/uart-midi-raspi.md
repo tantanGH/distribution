@@ -99,6 +99,8 @@ X68000Z、Raspberry Pi、MIDI音源のすべての電源を切る。Raspberry Pi
 - X68000Z UART RX  - (ジャンパケーブル) - Raspberry Pi 8番ピン(GPIO14, UART_TXD0)
 - X68000Z UART TX  - (ジャンパケーブル) - Raspberry Pi 10番ピン(GPIO15, UART_RDX0)
 
+X68000Z の UART 配線色は付属の説明書参照
+
 #### MIDI結線
 
 USB-MIDIアダプタを Raspberry Piに接続。
