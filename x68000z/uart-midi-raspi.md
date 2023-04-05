@@ -84,6 +84,21 @@ Apr.2023 tantan
 - MZP一式
 - いくつかのMIDIサンプル曲(ZMS/RCP等)
 
+上記のうち、サンプル曲を除いて構成した起動XDFの例
+
+- [X68Z_ZMUSICRS_010.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_ZMUSICRS_010.XDF)
+
+なお、SHARPより無償公開された HUMAN302.XDF をベースにメモリの半分をディスクキャッシュとRAMDISKに割り当てた上、以下のフリーソフトを組み込んでカスタマイズしてあります。作者の皆様にお礼申し上げます。
+
+- (hiocs16.lzh)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/hiocs16.lzh]
+- (LXR120FS.LZH)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/LXR120FS.LZH]
+- (LZX104.LZH)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/LZX104.LZH]
+- (MMDSP030.zip)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/MMDSP030.zip]
+- (MZP113.LZH)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/MZP113.LZH]
+- (pcm8a102.lzh)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/pcm8a102.lzh]
+- (tw136c14.lzh)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/tw136c14.lzh]
+- (ZM208.LZH)[https://github.com/tantanGH/distribution/raw/main/x68000z/archives/ZM208.LZH]
+
 #### Emulator Settings
 
 電源投入後すぐに interrupt ボタンを押し、Setup utility を起動する。
@@ -173,4 +188,5 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 ### 変更履歴
 
+- 2023/04/06 ... 起動用XDFサンプルイメージ追加 その他小修正
 - 2023/04/05 ... 初版
