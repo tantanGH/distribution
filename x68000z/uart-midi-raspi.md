@@ -88,16 +88,16 @@ Apr.2023 tantan
 
 - [X68Z_ZMUSICRS_010.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_ZMUSICRS_010.XDF)
 
-なお、SHARPより無償公開された HUMAN302.XDF をベースにメモリの半分をディスクキャッシュとRAMDISKに割り当てた上、以下のフリーソフトを組み込んでカスタマイズしてあります。作者の皆様にお礼申し上げます。
+なお、SHARPより無償公開された HUMAN302.XDF をベースにメモリの半分をディスクキャッシュとRAMDISKに割り当てた上、以下のフリーソフトと一部自作のツールを組み込んでカスタマイズしてあります。作者の皆様にお礼申し上げます。
 
-- [hiocs16.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/hiocs16.lzh)
-- [LXR120FS.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/LXR120FS.LZH)
-- [LZX104.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/LZX104.LZH)
-- [MMDSP030.zip](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/MMDSP030.zip)
-- [MZP113.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/MZP113.LZH)
-- [pcm8a102.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/pcm8a102.lzh)
-- [tw136c14.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/tw136c14.lzh)
-- [ZM208.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/ZM208.LZH)
+- [hiocs16.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/hiocs16.lzh) ... 高速IOCSドライバ HIOCS.X
+- [LXR120FS.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/LXR120FS.LZH) ... 高速LHA展開ツール LX.r
+- [LZX104.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/LZX104.LZH) ... 実行ファイル圧縮ツール LZX.X
+- [MMDSP030.zip](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/MMDSP030.zip) ... リアルタイムディスプレイミュージックセレクタ MMDSP.r
+- [MZP113.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/MZP113.LZH) ... マルチミュージックプレーヤ for ZMUSIC MZP.X
+- [pcm8a102.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/pcm8a102.lzh) ... ポリフォニックPCMドライバ PCM8A.X
+- [tw136c14.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/tw136c14.lzh) ... 21文字ファイル名対応ドライバ TwentyOne.x
+- [ZM208.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/ZM208.LZH) ... ZMUSIC v2 システム
 
 #### Emulator Settings
 
