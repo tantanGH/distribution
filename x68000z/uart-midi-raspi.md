@@ -22,7 +22,7 @@
 以下すべて OS は 32bit Lite (デスクトップ無し) の2023年4月時点の最新のもので確認した手順。
 
 
-1. シリアルコンソール無効化とUART有効化
+#### シリアルコンソール無効化とUART有効化
 
         sudo raspi-config
 
@@ -31,7 +31,7 @@
         sudo reboot
 
 
-2. Bluetooth 無効化
+#### Bluetooth 無効化
 
         sudo vi /boot/config.txt
 
@@ -40,14 +40,14 @@
         dtoverlay=disable-bt
 
 
-3. Primary UART確認
+#### Primary UART確認
 
         ls -alF /dev/serial*
 
   `/dev/serial0` が `ttyAMA0` へのシンボリックリンクになっていることを確認
 
 
-4. ttymidiのインストール
+#### ttymidiのインストール
 
         sudo apt-get install libasound2-dev
         wget http://www.varal.org/ttymidi/ttymidi.tar.gz
@@ -72,7 +72,7 @@
 
 ### X68000Z のセットアップ
 
-1. 起動XDFの準備
+#### 起動XDFの準備
 
 - Human68k 3.02
 - CONFIG.SYS の RSDRV.SYS をコメントアウト
@@ -80,7 +80,7 @@
 - MZP一式
 - いくつかのMIDIサンプル曲(ZMS/RCP等)
 
-2. Emulator Settings
+#### Emulator Settings
 
 電源投入後すぐに interrupt ボタンを押し、Setup utility を起動する。
 RS232 ボーレートを 19200bps に設定する。
@@ -108,7 +108,7 @@ USB-MIDIアダプタを Raspberry Piに接続。
 
 MIDI音源側にserial(PC)/MIDIモードの切り替えがあれば、MIDIモードにしておく。
 
-4. 電源ON
+#### 電源ON
 
 電源を入れ、煙や匂いが無いことを確認w
 
@@ -117,13 +117,13 @@ MIDI音源側にserial(PC)/MIDIモードの切り替えがあれば、MIDIモー
 
 ### RS-MIDI再生
 
-1. ttymidi 開始
+#### ttymidi 開始
 
 Raspberry Pi にログインし、ttymidi をバックグラウンドで起動する。
 
         ttymidi -s /dev/serial0 -b 38400 &
 
-2. aconnect
+#### aconnect
 
 現在の認識状況を確認し、ttymidi の out を USB MIDI の in に繋げる。
 
@@ -141,11 +141,11 @@ Raspberry Pi にログインし、ttymidi をバックグラウンドで起動�
 
         $ aconnect 128:0 28:0
 
-3. Human起動
+#### Human起動
 
 エミュレータモードでHuman68kを起動し、ZMUSICv2 RS-MIDI を常駐させる。
 
-4. 曲の再生
+#### 曲の再生
 
 - ZMSであれば `ZP.X`
 - RCPであれば `RCtoZ.X`
