@@ -158,6 +158,12 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 ---
 
-変更履歴
+### 制限事項
+
+- ttymidi で Unknown CMD が表示される (通信の問題っぽい。未解決)
+
+---
+
+### 変更履歴
 
 - 2023/04/05 ... 初版
