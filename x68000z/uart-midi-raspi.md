@@ -26,7 +26,7 @@
 
         sudo raspi-config
 
-Interface Options, Serial Port を選択して serial console -> no, uart -> yes を選択し、raspi-configを終了する。再起動。
+  Interface Options, Serial Port を選択して serial console -> no, uart -> yes を選択し、raspi-configを終了する。再起動。
 
         sudo reboot
 
@@ -35,7 +35,7 @@ Interface Options, Serial Port を選択して serial console -> no, uart -> yes
 
         sudo vi /boot/config.txt
 
-以下追加して再起動
+  以下追加して再起動
 
         dtoverlay=disable-bt
 
@@ -44,7 +44,7 @@ Interface Options, Serial Port を選択して serial console -> no, uart -> yes
 
         ls -alF /dev/serial*
 
-`/dev/serial0` が `ttyAMA0` へのシンボリックリンクになっていることを確認
+  `/dev/serial0` が `ttyAMA0` へのシンボリックリンクになっていることを確認
 
 
 4. ttymidiのインストール
@@ -54,15 +54,15 @@ Interface Options, Serial Port を選択して serial console -> no, uart -> yes
         tar zxvf ttymidi.tar.gz
         cd ttymidi/
 
-Makefile編集
+  Makefile編集
         
         vi Makefile
 
-`-lpthread`を追加する
+  `-lpthread`を追加する
 
         gcc src/ttymidi.c -o ttymidi -lasound -lpthread
 
--lpthreadを加える
+  ビルド＆インストール
 
         make 
         sudo make install
