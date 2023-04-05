@@ -17,14 +17,17 @@ class Maze:
     self.width = width
     self.height = height
     self.g = g
+    self.vsync_ready = False
 
-    self.scroll_x:int = 0
-    self.scroll_y:int = 0
-    self.scroll_dx:int = 0
-    self.scroll_dy:int = 0
+    self.scroll_x = 0
+    self.scroll_y = 0
+    self.scroll_dx = 0
+    self.scroll_dy = 0
 
     # initialize maze
     self.maze = [ 1 ] * self.width * self.height
+
+    # dig queue
     self.dig_positions = []
 
   def push(self, pos):
@@ -37,6 +40,7 @@ class Maze:
       return self.dig_positions.pop()
 
   def scroll(self, arg):
+    self.vsync_ready = True
     self.scroll_x = (self.scroll_x + self.scroll_dx + 1024) % 1024
     self.scroll_y = (self.scroll_y + self.scroll_dy + 1024) % 1024
     self.g.home(self.scroll_x, self.scroll_y)
@@ -136,6 +140,10 @@ def main():
 
     with x68k.Super(), x68k.IntVSync(m.scroll, m):
  
+      # wait vsync start (workaround for Timer-A reset bug)
+      while m.vsync_ready is False:
+        pass
+
       # dig
       while True:
 
