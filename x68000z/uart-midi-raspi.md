@@ -112,7 +112,7 @@ MIDI音源側にserial(PC)/MIDIモードの切り替えがあれば、MIDIモー
 
 #### 電源ON
 
-電源を入れ、煙や匂いが無いことを確認w
+電源を入れ、煙や匂いが無いことを確認ww
 
 
 ---
@@ -121,7 +121,7 @@ MIDI音源側にserial(PC)/MIDIモードの切り替えがあれば、MIDIモー
 
 #### ttymidi 開始
 
-Raspberry Pi にログインし、ttymidi をバックグラウンドで起動する。
+Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバックグラウンドで開始する。
 
         ttymidi -s /dev/serial0 -b 38400 &
 
