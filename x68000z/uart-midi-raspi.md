@@ -4,7 +4,7 @@
 
 2023.04.05 tantan
 
-<img src='images/uart-raspi.png'/>
+<img src='images/uart-raspi2.png'/>
 
 ---
 
