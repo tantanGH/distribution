@@ -89,17 +89,17 @@ RS232 ボーレートを 19200bps に設定する。
 
 ### ハードウェア接続
 
-1. すべての電源OFF
+#### すべての電源OFF
 
 X68000Z、Raspberry Pi、MIDI音源のすべての電源を切る。Raspberry Piは電源ケーブルを抜いておく。
 
-2. UART結線
+#### UART結線
 
 - X68000Z UART GND - (ジャンパケーブル) - Raspberry Pi 6番ピン
 - X68000Z UART RX  - (ジャンパケーブル) - Raspberry Pi 8番ピン(GPIO14, UART_TXD0)
 - X68000Z UART TX  - (ジャンパケーブル) - Raspberry Pi 10番ピン(GPIO15, UART_RDX0)
 
-3. MIDI結線
+#### MIDI結線
 
 USB-MIDIアダプタを Raspberry Piに接続。
 
