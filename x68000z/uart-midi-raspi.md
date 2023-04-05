@@ -6,6 +6,8 @@
 
 <img src='images/uart-raspi2.png'/>
 
+<img src='images/uart-raspi3.jpg'/>
+
 ---
 
 ### 用意するもの
