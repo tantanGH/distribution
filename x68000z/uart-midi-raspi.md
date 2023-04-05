@@ -4,9 +4,9 @@
 
 2023.04.05 tantan
 
-<img src='images/uart-raspi2.png'/>
+<img src='images/uart-raspi2.png' width='952'/>
 
-<img src='images/uart-raspi3.jpg'/>
+<img src='images/uart-raspi3.jpg' width='800'/>
 
 ---
 
