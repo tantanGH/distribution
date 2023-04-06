@@ -62,9 +62,9 @@ Apr.2023 tantan
         
         vi Makefile
 
-  `-lpthread`を追加する
+  `-O2` `-lpthread`を追加する
 
-        gcc src/ttymidi.c -o ttymidi -lasound -lpthread
+        gcc src/ttymidi.c -O2 -o ttymidi -lasound -lpthread
 
   ビルド＆インストール
 
