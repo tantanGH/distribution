@@ -184,6 +184,7 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 ### 制限事項
 
 - ttymidi で Unknown CMD が表示される (通信の問題っぽい。未解決)
+- MMDSPの表示とタイミングがズレる (workaround: USB-MIDIではなくRaspberry Pi内で FluidSynthなどのソフトシンセを使う)
 
 ---
 
