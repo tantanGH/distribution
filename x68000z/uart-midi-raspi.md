@@ -176,7 +176,8 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 任意のMIDIデータを ZMUSICで再生できる `MZP.X` がとても便利。
 
-        mzp <hogehoge.rcp>
+        mzp hogehoge.zms
+        mzp mogemoge.rcp
 
 個別に再生するならば、
 
