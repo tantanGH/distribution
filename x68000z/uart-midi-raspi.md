@@ -93,7 +93,7 @@ RS232 ボーレートを 19200bps に設定する。
 
 上記のうち、サンプル曲を除いて構成した起動XDFの例
 
-- [X68Z_ZMUSICRS_010.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_ZMUSICRS_010.XDF)
+- [X68Z_ZMUSICRS_20230406.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_ZMUSICRS_20230406.XDF)
 
 なお、SHARPより無償公開された HUMAN302.XDF をベースにメモリの半分をディスクキャッシュとRAMDISKに割り当てた上、以下のフリーソフトと一部自作のツールを組み込んでカスタマイズしてあります。作者の皆様にお礼申し上げます。
 
