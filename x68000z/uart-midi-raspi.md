@@ -66,7 +66,7 @@ Apr.2023 tantan
 
         gcc src/ttymidi.c -O2 -o ttymidi -lasound -lpthread
 
-  ビルド＆インストール
+  ビルド＆インストール。makeの警告は無視でok
 
         make 
         sudo make install
