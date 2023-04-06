@@ -174,10 +174,16 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 #### 曲の再生
 
-- ZMSであれば `ZP.X`
+任意のMIDIデータを ZMUSICで再生できる `MZP.X` がとても便利。
+
+        mzp <hogehoge.rcp>
+
+個別に再生するならば、
+
+- ZMSであれば `ZP.X` や `MMDSP.r`
 - RCPであれば `RCtoZ.X`
 
-を使って再生し、曲が流れることを確認する。
+など。
 
 ---
 
