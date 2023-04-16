@@ -6,7 +6,9 @@ Apr.2023 tantan
 
 <img src='images/uart-raspi3.jpg' width='600'/>
 
-<img src='images/uart-raspi4.jpg' width='600'/>
+<br/>
+
+<img src='images/uart-raspi6.jpg' width='600'/>
 
 ---
 
@@ -15,7 +17,16 @@ Apr.2023 tantan
 この覚書は以下の2つの構成パターンについて記述してあります。
 
 1. X68000Z + Raspberry Pi + USB-MIDIアダプタ + MIDI音源実機
+
+<img src='images/uart-raspi2.png' width='900'/>
+
+<br/>
+
 2. X68000Z + Raspberry Pi + ベアメタル上のソフト音源 (mt32-pi)
+
+<img src='images/uart-raspi5.png' width='600'/>
+
+<br/>
 
 それぞれのPros/Consは
 
