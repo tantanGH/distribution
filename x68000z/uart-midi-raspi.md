@@ -4,9 +4,30 @@
 
 Apr.2023 tantan
 
-<img src='images/uart-raspi2.png' width='952'/>
-
 <img src='images/uart-raspi3.jpg' width='600'/>
+
+<img src='images/uart-raspi4.jpg' width='600'/>
+
+---
+
+### 構成パターン
+
+この覚書は以下の2つの構成パターンについて記述してあります。
+
+1. X68000Z + Raspberry Pi + USB-MIDIアダプタ + MIDI音源実機
+2. X68000Z + Raspberry Pi + ベアメタル上のソフト音源 (mt32-pi)
+
+それぞれのPros/Consは
+
+Pros:
+1. MIDI音源実機を鳴らすロマン。
+2. MIDI音源無しですぐ始められる。使えるレベルのGS音源再現性。
+
+Cons:
+1. 取りこぼしややあり。遅延目立つ。
+2. ラズパイが1つ占有される。ちょっとノイジー。
+
+という感じです。ラズパイOS上でソフト音源のFluidSynthを鳴らす構成も試しましたが、取りこぼしが大きくあまり実用的ではありませんでした。
 
 ---
 
@@ -16,16 +37,19 @@ Apr.2023 tantan
 - X68000Z 本体付属のUARTケーブル
 - ブレッドボード用ジャンパケーブル(オス-メス) 3本 (無くても良いが、純正UARTケーブルの延長と抜き差し回数を減らす意味合い)
 - Raspberry Pi 3B+ または 4B (それ以外の機種は持ってないので不明)
+
+構成パターン1(外部MIDI音源)の場合は追加で以下も必要
 - USB-MIDI アダプタ
-- MIDI音源(SC55mkIIでのみ確認)
+- MIDI音源(Roland SC55mkII実機でのみ確認)
 
 ---
 
-### Raspberry Pi のセットアップ
+### Raspberry Pi のセットアップ (構成パターン1 MIDI外部音源の場合)
 
-以下すべて OS は 32bit Lite (デスクトップ無し) の2023年4月時点の最新のもので確認した手順。
+以下 OS は 32bit Lite (デスクトップ無し) の2023年4月時点の最新のもので確認した手順。
 
-X68000Z - Raspberry Pi 間でハードウェアフロー制御無しの UART 38400bps での通信は安定性を欠くため、デスクトップを始めとして余計な物を一切動かさないことをお勧めします。
+X68000Z - Raspberry Pi 間でハードウェアフロー制御無しの UART 38400bps での通信は安定性を欠くため、余計な物を一切動かさないことをお勧めします。
+デスクトップありのOSバージョンはお勧めしません。
 
 
 #### シリアルコンソール無効化とUART有効化
@@ -76,6 +100,34 @@ X68000Z - Raspberry Pi 間でハードウェアフロー制御無しの UART 384
 
 ---
 
+### Raspberry Pi のセットアップ (構成パターン2 ベアメタルmt32-piの場合)
+
+#### SDカードの準備
+
+32GB以下のMicroSDカードをFAT32でフォーマットする。
+
+#### MT32-piのファイルをコピーする
+
+[mt32-pi](https://github.com/dwhinham/mt32-pi/releases) のサイトから、最新のパッケージをダウンロードし、SDカードのルートに展開する。
+
+#### 設定ファイル更新
+
+ルートにある mt32-pi.cfg を編集する。以下は変更すべき箇所の例
+
+パラメータ|変更前|変更後
+-|-|-
+default_synth|mt32|soundfont
+usb|on|off
+gpio_baud_rate|31250|38400
+output_device|pwm|もしHDMIから音声出力したいならhdmi
+
+#### SDカードの差し替え
+
+ラズパイにSDカードを入れる。ベアメタル動作となるのでラズパイは占有され、他のことはできないので注意。
+
+
+---
+
 ### X68000Z のセットアップ
 
 #### Emulator Settings
@@ -83,7 +135,10 @@ X68000Z - Raspberry Pi 間でハードウェアフロー制御無しの UART 384
 電源投入後すぐに interrupt ボタンを押し、Setup utility を起動する。
 RS232 ボーレートを 19200bps に設定する。
 
-なお、ZMUSICが直接RS232Cを制御するため、Human68k上での SWITCH.X や SPEED.X による RS232C 設定は不要。
+なお、ZMUSICが直接RS232Cを制御して38400bpsの通信を行うため、Human68k上での SWITCH.X や SPEED.X による RS232C 設定は不要。
+
+上記Emulator Settingsについては下のレイヤで余計なウェイトなどが入らないことを期待してのおまじない程度の意味。
+
 
 #### 起動XDFの準備
 
@@ -111,7 +166,7 @@ RS232 ボーレートを 19200bps に設定する。
 
 ---
 
-### ハードウェア接続
+### ハードウェア接続 
 
 #### すべての電源OFF
 
@@ -128,7 +183,7 @@ X68000Z の UART 配線色は付属の説明書参照
 6番ピンのすぐ隣の4番ピンは+5Vなので、間違うと短絡して両方破損する可能性が高い。入念に確認する。
 
 
-#### MIDI結線
+#### MIDI結線 (構成1.外部MIDI音源の場合)
 
 USB-MIDIアダプタを Raspberry Piに接続。
 
@@ -144,7 +199,7 @@ MIDI音源側にserial(PC)/MIDIモードの切り替えがあれば、MIDIモー
 
 ---
 
-### RS-MIDI再生
+### RS-MIDI再生準備 (構成1の場合)
 
 #### ttymidi 開始
 
@@ -170,6 +225,16 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
         $ aconnect 128:0 28:0
 
+---
+
+### RS-MIDI再生準備 (構成2の場合)
+
+ラズパイ電源ONでmt32-piが起動するので、特になし
+
+---
+
+### RS-MIDI再生 (X68000Z)
+
 #### Human起動
 
 エミュレータモードでHuman68kを起動し、ZMUSICv2 RS-MIDI を常駐させる。
@@ -190,15 +255,20 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 ---
 
-### 制限事項
+### Known Issues
 
+構成1:
 - ttymidi で Unknown CMD が表示される (38400bps通信の不安定さから)
-- MMDSPの表示とタイミングがズレる (workaround: ラズパイ内でFluidSynthなどのソフトシンセを使う、ラズパイをバイパスしレベル変換してUART-MIDI直結、等)
+- 遅延によりMMDSPの表示とタイミングがズレる
+
+構成2:
+- ヘッドフォンジャックからの音声出力がちょっとノイジー
 
 ---
 
 ### 変更履歴
 
+- 2023/04/16 ... mt32-pi接続を追加
 - 2023/04/10 ... bpsに関する追記
 - 2023/04/06 ... 起動用XDFサンプルイメージ追加 その他小修正
 - 2023/04/05 ... 初版

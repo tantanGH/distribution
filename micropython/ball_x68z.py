@@ -201,7 +201,10 @@ def main():
   random.seed(int(time.time() * 10))
 
   # initialize screen
-  x68k.crtmod(12,True)
+  crt_mode = 12
+  if sys.argv[1] == "60Hz" or sys.argv[1] == "60hz":
+    crt_mode = 0x4c00 + 27    # crtmod16.x is required
+  x68k.crtmod(crt_mode, True)
   x68k.curoff()
   x68k.iocs(x68k.i.TXFILL,a1=pack('6h',0,0,0,1024,1024,0))
   x68k.iocs(x68k.i.TXFILL,a1=pack('6h',1,0,0,1024,1024,0))
@@ -215,7 +218,7 @@ def main():
     balls.append(b)
 
   # main loop
-  with x68k.Super(), x68k.IntVSync(vsync_callback, balls, 0, 0, 1):
+  with x68k.Super(), x68k.IntVSync(vsync_callback, balls, 1):
 
     while True:
       # check shift key to exit
