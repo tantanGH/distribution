@@ -272,12 +272,12 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
         mzp -s
 
-#### 曲の再生 (RCP)
+#### 曲の再生 (RCD)
 
         rcp mogemoge.rcp
         itor -b paepae.mid
 
-など。再生の停止は、
+など。`MMDSP.r` も利用可能。再生の停止は、
 
         rcp -e
 
