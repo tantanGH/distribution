@@ -162,7 +162,7 @@ RS232 ボーレートを 19200bps に設定する。
 
 上記のうち、サンプル曲を除いて構成した起動XDFの例
 
-- [X68Z_RSMIDI_20230418.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_RSMIDI_20230418.XDF)
+- [X68Z_RSMIDI_20230418a.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_RSMIDI_20230418a.XDF)
 
 なお、SHARPより無償公開された HUMAN302.XDF をベースにメモリの半分をディスクキャッシュとRAMDISKに割り当てた上、以下のフリーソフトと一部自作のツールを組み込んでカスタマイズしてあります。作者の皆様にお礼申し上げます。
 
@@ -179,7 +179,7 @@ RCD.X については、そのままでは X68000Z EAK 1.1.3 では動作しな�
 
 - [rc3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rc3013.Lzh) ... RCD システム 3.01q (HARPOONさん, TURBOさん)
 - [conv3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/conv3013.Lzh) ... RCD システム 3.01用各種MIDIフォーマットコンバータ (HARPOONさん, TURBOさん)
-- [rcd301q1.zip](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rcd301q1.zip) ... RCD.X 3.01q RS-MIDIモードを X68000Z UART で動作させるパッチ (tantan)
+- [RCD301qz1.ZIP](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/RCD301qz1.ZIP) ... RCD.X 3.01q+z1 RS-MIDIモードを X68000Z UART で動作させるパッチ (tantan)
 
 ---
 
@@ -302,6 +302,7 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 ### 変更履歴
 
+- 2023/04/18 ... RCDパッチ版のバージョン表記を 3.01q+z1 と改めた
 - 2023/04/18 ... RCD.X 3.01 X68000Z 独自パッチ版を追加
 - 2023/04/16 ... mt32-pi接続を追加
 - 2023/04/10 ... bpsに関する追記
