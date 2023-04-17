@@ -156,12 +156,13 @@ RS232 ボーレートを 19200bps に設定する。
 - Human68k 3.02
 - CONFIG.SYS の RSDRV.SYS をコメントアウト
 - ZMUSIC.X 2.08 の RS-MIDI パッチ版
+- RCD.X 3.01q の RS-MIDI X68000Z対応パッチ版
 - MZP一式
 - いくつかのMIDIサンプル曲(ZMS/RCP等)
 
 上記のうち、サンプル曲を除いて構成した起動XDFの例
 
-- [X68Z_ZMUSICRS_20230406.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_ZMUSICRS_20230406.XDF)
+- [X68Z_RSMIDI_20230418.XDF](https://github.com/tantanGH/distribution/raw/main/x68000z/xdf/X68Z_RSMIDI_20230418.XDF)
 
 なお、SHARPより無償公開された HUMAN302.XDF をベースにメモリの半分をディスクキャッシュとRAMDISKに割り当てた上、以下のフリーソフトと一部自作のツールを組み込んでカスタマイズしてあります。作者の皆様にお礼申し上げます。
 
@@ -174,6 +175,11 @@ RS232 ボーレートを 19200bps に設定する。
 - [tw136c14.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/tw136c14.lzh) ... 21文字ファイル名対応ドライバ TwentyOne.x (Extさん, GORRYさん)
 - [ZM208.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/ZM208.LZH) ... ZMUSIC v2 システム (Z.Nishikawaさん)
 
+RCD.X については、そのままでは X68000Z EAK 1.1.3 では動作しなかったので独自に対策を施したパッチを当てたものを入れています。ただし、正常な動作を保証するものではありません。また、今後のZエミュレータの更新により動かなくなる、不要になるケースも想定されます。
+
+- [rc3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rc3013.Lzh) ... RCD システム 3.01q (HAPOONさん, TURBOさん)
+- [conv3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/conv3013.Lzh) ... RCD システム 3.01用各種MIDIフォーマットコンバータ (TURBOさん)
+- [rcd301q1.zip](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rcd301q1.zip) ... RCD.X 3.01q RS-MIDIモードを X68000Z UART で動作させるパッチ (tantan)
 
 ---
 
@@ -210,7 +216,7 @@ MIDI音源側にserial(PC)/MIDIモードの切り替えがあれば、MIDIモー
 
 ---
 
-### RS-MIDI再生準備 (構成1の場合)
+### RS-MIDI再生準備 (構成パターン1 MIDI外部音源の場合)
 
 #### ttymidi 開始
 
@@ -238,7 +244,7 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 ---
 
-### RS-MIDI再生準備 (構成2の場合)
+### RS-MIDI再生準備 (構成パターン2 ベアメタルmt32-piの場合)
 
 ラズパイ電源ONでmt32-piが起動するので、特になし
 
@@ -248,11 +254,11 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 
 #### Human起動
 
-エミュレータモードでHuman68kを起動し、ZMUSICv2 RS-MIDI を常駐させる。
+エミュレータモードでHuman68kを起動し、ZMUSICv2 RS-MIDI またはパッチ済み RCD.X RS-MIDIモード(-c) を常駐させる。
 
-#### 曲の再生
+#### 曲の再生 (ZMUSIC)
 
-任意のMIDIデータを ZMUSICで再生できる `MZP.X` がとても便利。
+任意のMIDIデータを ZMUSICで再生できる `MZP.X` が便利。
 
         mzp hogehoge.zms
         mzp mogemoge.rcp
@@ -262,7 +268,24 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 - ZMSであれば `ZP.X` や `MMDSP.r`
 - RCPであれば `RCtoZ.X`
 
-など。
+など。再生の停止は、
+
+        mzp -s
+
+#### 曲の再生 (RCP)
+
+        rcp mogemoge.rcp
+        rcp paepae.mid
+
+など。再生の停止は、
+
+        rcp -e
+
+歌詞データファイル .WRD が存在する場合は、WRDP.X を使って
+
+        wrdp mogemoge.rcp
+
+とRCPファイルを指定すると(WRDファイルではない)、歌詞付きでの演奏が可能。
 
 ---
 
@@ -273,12 +296,13 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 - 遅延によりMMDSPの表示とタイミングがズレる
 
 構成2:
-- ヘッドフォンジャックからの音声出力がちょっとノイジー
+- ヘッドフォンジャックからの音声出力がノイジー
 
 ---
 
 ### 変更履歴
 
+- 2023/04/18 ... RCD.X 3.01 X68000Z 独自パッチ版を追加
 - 2023/04/16 ... mt32-pi接続を追加
 - 2023/04/10 ... bpsに関する追記
 - 2023/04/06 ... 起動用XDFサンプルイメージ追加 その他小修正
