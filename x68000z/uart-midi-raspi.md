@@ -177,8 +177,8 @@ RS232 ボーレートを 19200bps に設定する。
 
 RCD.X については、そのままでは X68000Z EAK 1.1.3 では動作しなかったので独自に対策を施したパッチを当てたものを入れています。ただし、正常な動作を保証するものではありません。また、今後のZエミュレータの更新により動かなくなる、不要になるケースも想定されます。
 
-- [rc3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rc3013.Lzh) ... RCD システム 3.01q (HAPOONさん, TURBOさん)
-- [conv3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/conv3013.Lzh) ... RCD システム 3.01用各種MIDIフォーマットコンバータ (TURBOさん)
+- [rc3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rc3013.Lzh) ... RCD システム 3.01q (HARPOONさん, TURBOさん)
+- [conv3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/conv3013.Lzh) ... RCD システム 3.01用各種MIDIフォーマットコンバータ (HARPOONさん, TURBOさん)
 - [rcd301q1.zip](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rcd301q1.zip) ... RCD.X 3.01q RS-MIDIモードを X68000Z UART で動作させるパッチ (tantan)
 
 ---
@@ -275,7 +275,7 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 #### 曲の再生 (RCP)
 
         rcp mogemoge.rcp
-        rcp paepae.mid
+        itor -b paepae.mid
 
 など。再生の停止は、
 
