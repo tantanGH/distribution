@@ -175,7 +175,7 @@ RS232 ボーレートを 19200bps に設定する。
 - [tw136c14.lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/tw136c14.lzh) ... 21文字ファイル名対応ドライバ TwentyOne.x (Extさん, GORRYさん)
 - [ZM208.LZH](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/ZM208.LZH) ... ZMUSIC v2 システム (Z.Nishikawaさん)
 
-RCD.X については、そのままでは X68000Z EAK 1.1.3 では動作しなかったので独自に対策を施したパッチを当てたものを入れています。ただし、正常な動作を保証するものではありません。また、今後のZエミュレータの更新により動かなくなる、不要になるケースも想定されます。
+RCD.X については、そのままでは X68000Z EAK 1.1.3 では動作しなかったので独自に対策を施したパッチを当てたものを入れています。ただし、正常な動作を保証するものではありません。また、今後のZエミュレータの更新により動かなくなる、不要になるケースも想定されます。また、このパッチを当てたバージョンは実機では正常に動作しません。
 
 - [rc3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/rc3013.Lzh) ... RCD システム 3.01q (HARPOONさん, TURBOさん)
 - [conv3013.Lzh](https://github.com/tantanGH/distribution/raw/main/x68000z/archives/conv3013.Lzh) ... RCD システム 3.01用各種MIDIフォーマットコンバータ (HARPOONさん, TURBOさん)
