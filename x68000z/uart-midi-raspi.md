@@ -18,13 +18,13 @@ Apr.2023 tantan
 
 1. X68000Z + Raspberry Pi + USB-MIDIアダプタ + MIDI音源実機
 
-<img src='images/uart-raspi2.png' width='900'/>
+<img src='images/uart-raspi7.png' width='900'/>
 
 <br/>
 
 2. X68000Z + Raspberry Pi + ベアメタル上のソフト音源 (mt32-pi)
 
-<img src='images/uart-raspi5.png' width='600'/>
+<img src='images/uart-raspi8.png' width='600'/>
 
 <br/>
 
