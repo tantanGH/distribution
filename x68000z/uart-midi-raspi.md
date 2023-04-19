@@ -146,7 +146,7 @@ output_device|pwm|もしHDMIから音声出力したいならhdmi
 電源投入後すぐに interrupt ボタンを押し、Setup utility を起動する。
 RS232 ボーレートを 19200bps に設定する。
 
-なお、ZMUSICが直接RS232Cを制御して38400bpsの通信を行うため、Human68k上での SWITCH.X や SPEED.X による RS232C 設定は不要。
+なお、ZMUSIC/RCDが直接SCC/UARTを制御して通信を行うため、Human68k上での SWITCH.X や SPEED.X による RS232C 設定は不要。
 
 上記Emulator Settingsについては下のレイヤで余計なウェイトなどが入らないことを期待してのおまじない程度の意味。
 
