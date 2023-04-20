@@ -309,3 +309,5 @@ Raspberry Pi にログインし、ttymidi を Primary UARTを使ってバック�
 - 2023/04/10 ... bpsに関する追記
 - 2023/04/06 ... 起動用XDFサンプルイメージ追加 その他小修正
 - 2023/04/05 ... 初版
+
+<img src='images/uart-raspi9.png'/>
